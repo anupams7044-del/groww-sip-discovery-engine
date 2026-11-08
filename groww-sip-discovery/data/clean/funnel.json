@@ -1,0 +1,400 @@
+{
+  "timestamp": "2026-10-27T16:02:56.963Z",
+  "total_raw": 1088,
+  "total_clean": 1025,
+  "overall_retention_rate": "94.2%",
+  "sources_breakdown": {
+    "playstore": {
+      "raw": 748,
+      "clean": 697,
+      "dropped": 51
+    },
+    "appstore": {
+      "raw": 10,
+      "clean": 10,
+      "dropped": 0
+    },
+    "tradingqna": {
+      "raw": 293,
+      "clean": 281,
+      "dropped": 12
+    },
+    "youtube": {
+      "raw": 25,
+      "clean": 25,
+      "dropped": 0
+    },
+    "reddit": {
+      "raw": 12,
+      "clean": 12,
+      "dropped": 0
+    }
+  },
+  "steps": [
+    {
+      "step": "1_deduplication",
+      "description": "Remove exact and near duplicates across collections",
+      "items_in": 1088,
+      "items_out": 1088,
+      "removed": 0,
+      "reasons": {
+        "duplicate_content": 0
+      }
+    },
+    {
+      "step": "2_length_and_noise",
+      "description": "Drop items < 8 words or generic rating noise without substance",
+      "items_in": 1088,
+      "items_out": 1037,
+      "removed": 51,
+      "reasons": {
+        "too_short": 51,
+        "generic_noise": 0
+      }
+    },
+    {
+      "step": "3_relevance_and_false_matches",
+      "description": "Verify genuine Systematic Investment Plan context and discard off-topic mentions",
+      "items_in": 1037,
+      "items_out": 1025,
+      "removed": 12,
+      "reasons": {
+        "non_sip_or_irrelevant": 12
+      }
+    }
+  ],
+  "removed_samples": [
+    {
+      "id": "playstore_Zerodha_Coin_f3f272cc_77ae_49ec_a9a4_4863ee0cf19a",
+      "source": "playstore",
+      "text": "Best App for online Mutual Fund Investment.",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_c1b43aa2_070d_43a3_b33e_f8ea0a4a5c4a",
+      "source": "playstore",
+      "text": "best app for sip",
+      "reason": "Too short (< 8 words: 4 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_cfea8a9a_4a32_4560_974e_8dd08c43fe24",
+      "source": "playstore",
+      "text": "XIRR not getting displayed for MF portfolio",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_144a6506_e3f8_4c56_9db6_85b568acd534",
+      "source": "playstore",
+      "text": "good app for the MF",
+      "reason": "Too short (< 8 words: 5 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_fff42123_ac5a_4a30_a029_4a699469d096",
+      "source": "playstore",
+      "text": "wonderful application for investing for MF",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_81bf0a32_bacf_42d4_9309_d37ec72b3c47",
+      "source": "playstore",
+      "text": "SIP works horribly with bank mandates.",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_6a5cc337_bd3f_4e88_a086_2e972ec07e83",
+      "source": "playstore",
+      "text": "Excellent for mutual funds.",
+      "reason": "Too short (< 8 words: 4 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_00c521c4_dff3_4627_aa1a_240367c433a8",
+      "source": "playstore",
+      "text": "Unable to do SIP payment. please check.",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_3a82f4fb_f70e_4b4c_8b73_d58bf0887805",
+      "source": "playstore",
+      "text": "mutual fund investments in best app coin",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_c96ae3dc_be88_4206_b75c_78ac906154a6",
+      "source": "playstore",
+      "text": "best for mutual fund simple app",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Upstox_2bfc89f8_4c44_4567_b209_fda0b532fae7",
+      "source": "playstore",
+      "text": "nice app for stocks and mutual fund",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Upstox_a33da474_7f68_4c58_b5c6_360d5d9f7a09",
+      "source": "playstore",
+      "text": "bad mutual fund purchase experience",
+      "reason": "Too short (< 8 words: 5 words)"
+    },
+    {
+      "id": "playstore_Paytm_Money_9ce01694_714c_456d_9d4f_67105c582f26",
+      "source": "playstore",
+      "text": "good app invest for mutual fund",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Paytm_Money_079f438d_a567_40c0_92a2_e705c3f1cfff",
+      "source": "playstore",
+      "text": "good app and good sip fund",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_b0567935_ff99_4496_af16_d6e4b2ed362c",
+      "source": "playstore",
+      "text": "good App for mutual fund investment...",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_9e03d1e5_d04d_47a8_b56c_7fb061318474",
+      "source": "playstore",
+      "text": "not easy to compare sip mutual funds",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_efde93da_d80e_4d40_b127_82095ffee74e",
+      "source": "playstore",
+      "text": "discrepancy in mutual fund holding",
+      "reason": "Too short (< 8 words: 5 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_b8fee783_60b3_48e2_882d_35fd0f22a2b2",
+      "source": "playstore",
+      "text": "Good app of investment in mutual funds",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_1f809de5_110a_46d0_843b_ea0584826b7b",
+      "source": "playstore",
+      "text": "Best app for mutual fund...",
+      "reason": "Too short (< 8 words: 5 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_f896b117_ec8f_4b26_b242_e0f1e86ea24f",
+      "source": "playstore",
+      "text": "Add 10 years option in CAGR display.",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_b76335d4_6036_49b9_9598_96eb439bb1bd",
+      "source": "playstore",
+      "text": "Excellent app...plz add Overall Portfolio CAGR",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_403de0fd_cc6f_4896_a37e_e5a82e6cff71",
+      "source": "playstore",
+      "text": "why zerodha not have Nasdaq mutual fund",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_67c065a0_bdf8_4379_a348_118eab6f6b15",
+      "source": "playstore",
+      "text": "Good app for daily SIP, Great, 👍👍",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_eb0aace0_4d99_4097_b0fd_27dd576ad29d",
+      "source": "playstore",
+      "text": "My Mutual Fund Not Showing In App",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_b33c8ace_6033_45bf_be52_d978d389fbae",
+      "source": "playstore",
+      "text": "Good app for mutual funds",
+      "reason": "Too short (< 8 words: 5 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_5a8bb74d_d2f0_4566_a936_152101b678b6",
+      "source": "playstore",
+      "text": "Good app for sip beginners",
+      "reason": "Too short (< 8 words: 5 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_d06ace8f_e01a_4117_821f_d1d839d1f914",
+      "source": "playstore",
+      "text": "Nice aap for invest in mf",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_7a6acfd6_b129_4dd3_8e2b_eddb5140940f",
+      "source": "playstore",
+      "text": "Best platform to invest mutual funds",
+      "reason": "Too short (< 8 words: 6 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_8227efc3_75af_444f_9135_c3c535d9074c",
+      "source": "playstore",
+      "text": "Sip date not edited. Most complicated app.",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "playstore_Zerodha_Coin_4be4525b_f371_43bd_887f_6b77318f0835",
+      "source": "playstore",
+      "text": "The best and super easy MF app.",
+      "reason": "Too short (< 8 words: 7 words)"
+    },
+    {
+      "id": "tradingqna_192174_post_522073",
+      "source": "tradingqna",
+      "text": "[Q] Why is it so hard to build a disciplined dip-buying framework for Indian markets?\n\nI’ve noticed that most investors say they want to buy corrections, but very few seem to have a clear process for doing it. In theory it sounds simple: keep cash ready wait for a fall buy in stages But in practice, execution gets messy very fast. A 10% fall feels like maybe more downside is coming. A 20% fall feels uncomfortable. A deeper correction starts raising questions about whether the business, sector, or market structure itself has changed. Because of that, I think the real challenge is not conviction alone. It is building a framework that is actually usable during panic. Things I keep thinking about: what should qualify as a meaningful dip? should entries be based on fixed drawdown levels or market context? should allocation increase as the fall deepens, or stay constant? how do you avoid buying too early without also missing the opportunity completely? I’m exploring ways to make this process more systematic, because discretionary dip-buying sounds easy until markets actually get ugly. How do you approach this? Do you follow predefined levels, staggered allocation, technical confirmation, or something else? Would be useful to hear frameworks that have actually worked in Indian equities I made a tool to analyze the dip / simulation / backtracking - search diptip in google",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_13157_post_36813",
+      "source": "tradingqna",
+      "text": "[Q] Please add more Direct funds\n\nHi, I was unable to find some of the top performing funds in the list. For E.g.: SBI Small & Midcap Fund - Direct Plan i was able to find this under Non-direct regular funds. Please add more funds to Direct funds. Thanks, Ragavendra",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_67989_post_190665",
+      "source": "tradingqna",
+      "text": "[Q] Please suggest few shares for investment in the year 2020\n\nDear experienced investors & traders, kindly suggest few shares for investment ( not for trading ) in the year 2020.",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_56636_post_160378",
+      "source": "tradingqna",
+      "text": "[Q] Has anyone tried vested.co.in? Is it safe? Any other good alternative for investing in foreign shares?\n\nHas anyone tried vested.co.in? Is it safe? Any other good alternative for investing in foreign shares?",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_171625_post_466654",
+      "source": "tradingqna",
+      "text": "[Q] Hindenburg: Documents Reveal SEBI’s Chairperson Had Stake In Entities Used In Adani Money Siphoning Scandal\n\nhttps://hindenburgresearch.com/sebi-chairperson/",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_21935_post_57502",
+      "source": "tradingqna",
+      "text": "[Q] Issues of smallcase\n\nWhat are the pros & cons of small case? I read that these Holdings get added to regular equity Holdings so it’s not possible to view them separately. Is this true? What are other such issues?",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_17308_post_46139",
+      "source": "tradingqna",
+      "text": "[Q] Who are the largest brokerage firms in India?\n\nDoes anyone have data on who are the largest brokerage firms in India - both by trading volumes and by number of clients?",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_115321_post_317105",
+      "source": "tradingqna",
+      "text": "[Q] Investing in all time high market\n\nHello All, As the topic says, can anyone please tell /share information/tips/pros or cons as how to invest when market is all time high FYI: i know i should do my own reserach/ read topics, just I want to know other people perspective/logic/mindset (whatever the right word may be) as how they’re investing in this all time high market Thanks",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_114825_post_315930",
+      "source": "tradingqna",
+      "text": "[Q] Where can we buy shares of Private Equity?\n\nWhere can we buy shares of Private Equity? Do we need broker? Please name the broker.",
+      "reason": "No relevant investing/SIP keywords found"
+    },
+    {
+      "id": "tradingqna_94335_post_263252",
+      "source": "tradingqna",
+      "text": "[Q] Investing Decisions as a Trader\n\nHi @nithin sir, I am finding it very difficult to take investment decisions because my mindset has been trained as of a trader. Even if I buy some share as an investment, the trader mindset kicks in and my mind tells me to book profit or to get out by taking a small loss. How to overcome this ? Kindly enlighten me.",
+      "reason": "No relevant investing/SIP keywords found"
+    }
+  ],
+  "kept_samples": [
+    {
+      "id": "playstore_Groww_a5181183_63ff_40d7_8f5e_8585229c1f78",
+      "source": "playstore",
+      "text": "Prime Mutual fund in groww app is a SCAM. They don't tell clearly but manipulate you into buying regular (costly) mutual funds. Never expected this from Groww. While you are in Prime mode, dashboard will not mention which are the regular MF. Only after exiting the Prime mode, they mention it. I'm going to make official complaint against Groww.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_5fab2b84_3064_4bcc_abdc_a57faccf4dab",
+      "source": "playstore",
+      "text": "I'm using groww app for 5+ year. The app is smooth very easy to understand. UI is easy, Payment are also smooth. Commodities exchange is also good. Even mutual fund are also good 👍. Loved this compared to other which is difficult in UI understanding",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_31c6fa41_e76d_494c_8aeb_7f9d8291678e",
+      "source": "playstore",
+      "text": "NEVER USE GROWW! Withdrawal money never credited. My first experience was terrible. I invested in an emergency liquid mutual fund, but when I placed my first withdrawal order, Groww executed it the same day without generating a UTR number or crediting the money. They claimed a cheque was sent via BlueDart, which showed “Delivered to self.” Despite raising tickets and submitting my bank statement and cancelled cheque repeatedly, Groww kept me in the same loop. SAME HAPPENED WITH THE SEC ORDER",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_a5fb1490_c22c_45e1_b823_19d9cef1d958",
+      "source": "playstore",
+      "text": "Grow is a good app for SIP, I have also started SIP in it.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_4b9a15df_0e1d_4104_b236_296344af258b",
+      "source": "playstore",
+      "text": "My bank account has been blocked due to an unexpected transaction from Groww. I did not initiate or withdraw any money, yet funds were automatically credited to my account. It has been almost a month, and my account is still blocked. As a result, my EMI and SIP payments cannot be processed, and I may not receive my salary. This has caused serious financial stress. Please investigate this issue urgently, clarify why the transaction occurred, and help resolve the matter at the earliest.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_370afd8b_f51f_47fa_a662_b51a6be2e0a8",
+      "source": "playstore",
+      "text": "Groww is very easy to use compared to many apps, which I really like. However, there is no separate category or dedicated section for International Mutual Funds, making it difficult to find all available funds. I’ve also noticed that international funds currently not accepting new SIPs or lump-sum investments don’t even appear when searched in the app. This is very disappointing and frustrating. Because of these issues, I’m giving Groww a 1-star review.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_e10390c4_9c4e_4406_a83d_bda8dc96ce29",
+      "source": "playstore",
+      "text": "Giving 1 star just because I tried a lot to skip my sips for a month and it shows it can be done 2 days before sip date, but even before 2 days it doesn't work. I recently got operated on my knee and I'm not able to go for work due to which I'm facing financial issues and just need one month to get back on track and so tried to skip one installment but the useless feature doesn't work. So I urge users to think before you install this app, as in emergency groww won't help you at all.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_bb351464_0689_48da_b6a6_1200443ba4bc",
+      "source": "playstore",
+      "text": "Worst for trading or chart reading. Use this only for SIPs. It literally gave me an alert saying that the stock had reached my target, but when I checked the chart on my PC, the price was still 100 points below that target. Can you believe this? 🤬🤬👎🏻👎🏻👎🏻👎🏻👎🏻",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_f1ca2f35_cdbb_4955_9bd8_8ca9f0241def",
+      "source": "playstore",
+      "text": "I guess it's one of the best app for treading. Very easy to handle as a first time user in stock market. Everything is very easy to understand and segmented on different portions. One problem is I can't increase Sip money instantly. It has to be wait for 6 months to 1 year. That's a problematic part i guess.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_02d756db_bd06_45ad_9575_499892aa93f6",
+      "source": "playstore",
+      "text": "I have been investing in mutual funds through Groww, but my experience has been disappointing. When I tried to withdraw my money, I never received the OTP required for verification. Despite multiple follow-ups, the issue was not resolved, and customer support was not helpful. Please ensure your registered mobile number and email are updated before investing. I hope Groww improves its support for customers facing such critical issues.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_824b6a7c_ac0c_48a5_90e3_f72f9684c339",
+      "source": "playstore",
+      "text": "Using Groww since 2018 for both swing trading and long-term investments, including mutual funds. The app is super user-friendly with fast order execution. I really love the clean interface—it doesn't clutter the screen with unnecessary data, making it very easy to understand everything at a glance. Highly recommended.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_10c8d5c9_6d44_4bc5_8649_8c429f412e93",
+      "source": "playstore",
+      "text": "I love the minimal but vast options available in the app, be it stocks, MF, commodity etc but I feel that 1 thing is lacking. In the Groww Web they recently included that feature. I'm talking about Trade directly from charts i.e., like Dhan you can simply drag drop SL and target levels. The feature is there in Groww web but it is not available in mobile. i usually trade from mobile so if they roll out this important feature I'll come back and give it a 5 ⭐ Even Zerodha kite has that feature now",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_3c1aa27c_169e_497f_8d0c_2fdaa71c286d",
+      "source": "playstore",
+      "text": "I've found out that to place *sell order of stocks at market price * user is not prompted to confirm and is instantaneous due to which I had accidentally placed order as a result of misclick. I hope this gets fixed. Edit : Recent Autopay requests from IPO application haven't mentioned the application ID and I'm very frustrated I might create wrong Autopay. Besides there are repetetive Autopay requests from IPO applications.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_66aca4e9_e96a_4e94_ada8_dd661f1f3d02",
+      "source": "playstore",
+      "text": "Allow us to pause SIPs indefinitely. Currently you can skip 1 installment or cancel completely but I just want to pause for a few months.",
+      "lang": "en"
+    },
+    {
+      "id": "playstore_Groww_68414fe4_e990_48f4_839e_f49f1dd7172f",
+      "source": "playstore",
+      "text": "Groww is a simple, user-friendly and convenient investment app. It is easy to use for mutual funds, stocks and tracking investments. The interface is clean and helpful, especially for beginners. Overall, a good experience with Groww. 👍⭐",
+      "lang": "en"
+    }
+  ]
+}

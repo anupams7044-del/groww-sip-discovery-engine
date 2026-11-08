@@ -1,0 +1,89 @@
+{
+  "last_updated": "2026-10-27T16:01:24.784Z",
+  "sources": [
+    {
+      "source": "playstore",
+      "count": 748,
+      "date_range": {
+        "earliest": "2018-09-22T03:41:13.192Z",
+        "latest": "2026-10-26T09:34:20.403Z"
+      },
+      "keywords_used": [
+        "SIP",
+        "mutual fund",
+        "mandate",
+        "autopay"
+      ]
+    },
+    {
+      "source": "appstore",
+      "count": 10,
+      "date_range": {
+        "earliest": "2025-07-02T04:10:46.000Z",
+        "latest": "2026-08-06T05:17:50.000Z"
+      },
+      "keywords_used": [
+        "SIP",
+        "mutual fund",
+        "mandate",
+        "autopay"
+      ]
+    },
+    {
+      "source": "tradingqna",
+      "count": 293,
+      "date_range": {
+        "earliest": "2014-07-20T14:51:29.000Z",
+        "latest": "2026-10-25T17:11:17.641Z"
+      },
+      "keywords_used": [
+        "SIP",
+        "SIP stopped",
+        "SIP paused",
+        "SIP experience",
+        "mutual fund SIP",
+        "first time investor SIP",
+        "SIP mandate",
+        "cancel SIP",
+        "stop SIP"
+      ]
+    },
+    {
+      "source": "youtube",
+      "count": 25,
+      "date_range": {
+        "earliest": "2024-03-15T10:14:00Z",
+        "latest": "2025-08-22T18:05:00Z"
+      },
+      "keywords_used": [
+        "SIP",
+        "mutual fund",
+        "groww",
+        "systematic investment plan",
+        "sip stopped",
+        "sip paused",
+        "first sip",
+        "sip loss",
+        "mandate failed"
+      ]
+    },
+    {
+      "source": "reddit",
+      "count": 12,
+      "date_range": {
+        "earliest": "2024-04-12T14:10:00Z",
+        "latest": "2025-03-24T14:00:00Z"
+      },
+      "keywords_used": [
+        "SIP",
+        "SIP stopped",
+        "SIP paused",
+        "mutual fund SIP",
+        "first SIP",
+        "SIP experience",
+        "stopped investing"
+      ]
+    }
+  ],
+  "total_items": 1088
+}

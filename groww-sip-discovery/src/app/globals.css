@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #121212;
+  --foreground: #ffffff;
+  --groww-mint: #00D09C;
+  --groww-mint-dark: #00B386;
+  --groww-red: #ED5533;
+  --groww-blue: #5367FF;
+  --groww-yellow: #FFB61B;
+  --surface-z1: #1C2028;
+  --surface-z2: #232734;
+  --border-primary: #282D3D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #9EA0A8;
+  --text-muted: #696C7C;
+}
+
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: GrowwSans, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbars matching Groww */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #282D3D;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3E455B;
+}

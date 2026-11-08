@@ -1,0 +1,123 @@
+{
+  "timestamp": "2026-10-27T22:46:40.702Z",
+  "model_evaluated": "gemini-3.5-flash-lite",
+  "golden_set_size": 20,
+  "agreement_metrics": {
+    "lifecycle_stage_agreement_pct": 90,
+    "churn_type_agreement_pct": 75,
+    "action_agreement_pct": 95,
+    "first_time_signal_agreement_pct": 100,
+    "full_item_perfect_match_pct": 65,
+    "verbatim_quote_fidelity_pct": 85
+  },
+  "total_disagreements": 8,
+  "disagreements": [
+    {
+      "id": "reddit_groww_mandate_bounce",
+      "source": "reddit",
+      "field": "churn_type",
+      "ai_value": "involuntary",
+      "human_value": "voluntary",
+      "text_snippet": "Groww UPI autopay failed yesterday due to technical issue on their side, and ICI"
+    },
+    {
+      "id": "reddit_groww_nav_allotment_delay",
+      "source": "reddit",
+      "field": "churn_type",
+      "ai_value": "unclear",
+      "human_value": "none",
+      "text_snippet": "On Monday market crash, SIP was scheduled. Amount debited 8 AM. But Groww allott"
+    },
+    {
+      "id": "reddit_mf_emergency_cash_crunch",
+      "source": "reddit",
+      "field": "churn_type",
+      "ai_value": "involuntary",
+      "human_value": "voluntary",
+      "text_snippet": "Between Diwali gifts and medical expenses, wanted to pause SIP for 2 months. In "
+    },
+    {
+      "id": "youtube_amit_sharma_tech_2024_04_02T14_22_00Z",
+      "source": "youtube",
+      "field": "churn_type",
+      "ai_value": "involuntary",
+      "human_value": "voluntary",
+      "text_snippet": "My SIP date was 5th every month. Salary gets credited on 7th. Autopay failed twi"
+    },
+    {
+      "id": "youtube_ritu_malhotra_delhi_2025_06_03T11_22_00Z",
+      "source": "youtube",
+      "field": "lifecycle_stage",
+      "ai_value": "re_engagement",
+      "human_value": "voluntary_decision_m3_12",
+      "text_snippet": "Completed 12 months of active SIP without missing any month! The secret was keep"
+    },
+    {
+      "id": "appstore_https___apps_apple_com_review_seed_3",
+      "source": "appstore",
+      "field": "lifecycle_stage",
+      "ai_value": "setup",
+      "human_value": "payment_reliability",
+      "text_snippet": "Mandate registration takes too long: I registered my autopay mandate 2 weeks ago"
+    },
+    {
+      "id": "tradingqna_136646_post_373766",
+      "source": "tradingqna",
+      "field": "churn_type",
+      "ai_value": "unclear",
+      "human_value": "none",
+      "text_snippet": "SIP Insurance on continued / new SIP on MF. Can anybody tell more about SIP insu"
+    },
+    {
+      "id": "tradingqna_136646_post_373766",
+      "source": "tradingqna",
+      "field": "action",
+      "ai_value": "unclear",
+      "human_value": "continuing",
+      "text_snippet": "SIP Insurance on continued / new SIP on MF. Can anybody tell more about SIP insu"
+    }
+  ],
+  "failure_patterns": [
+    {
+      "pattern": "Voluntary vs Involuntary Churn Ambiguity on Bounce Penalty",
+      "description": "When a bank bounce fee triggers the user to cancel all SIPs in anger, AI labeled it 'involuntary' (due to payment bounce), while human labeled it 'voluntary' (intentional user cancellation triggered by bank fee).",
+      "affected_items": [
+        "reddit_groww_mandate_bounce",
+        "youtube_amit_sharma_tech_2024_04_02T14_22_00Z"
+      ],
+      "remedy": "Refine prompt: If user explicitly clicks cancel/stop after an involuntary event, tag primary churn as voluntary with secondary trigger 'mandate_penalty_backlash'."
+    },
+    {
+      "pattern": "Setup vs Payment Reliability on Mandate Approval Delays",
+      "description": "For eNACH mandate taking 2 weeks to register, AI tagged as 'setup', whereas human considered it 'payment_reliability' since registration failure directly missed an installment.",
+      "affected_items": [
+        "appstore_https___apps_apple_com_review_seed_3"
+      ],
+      "remedy": "Clarify taxonomy boundary: Initial bank account linking is 'setup'; recurring mandate approval and debit failures belong to 'payment_reliability'."
+    },
+    {
+      "pattern": "Re-engagement vs 12-Month Milestone Achievement",
+      "description": "User who completed 12 months without missing installments was tagged as 're_engagement' by AI because they reviewed at year 1, whereas human tagged 'voluntary_decision_m3_12'.",
+      "affected_items": [
+        "youtube_ritu_malhotra_delhi_2025_06_03T11_22_00Z"
+      ],
+      "remedy": "Reserve 're_engagement' strictly for restarting stopped/paused SIPs; active completion belongs to M3-M12 milestone retention."
+    },
+    {
+      "pattern": "Unclear vs None Churn Type on General Feature Queries",
+      "description": "When users ask neutral exploratory questions (e.g. SIP insurance or Coin demat mechanics), AI labeled churn as 'unclear', whereas human classified it as 'none' (healthy ongoing engagement).",
+      "affected_items": [
+        "tradingqna_136646_post_373766"
+      ],
+      "remedy": "Explicitly guide model: Exploratory or optimization questions should default to churn_type = 'none' unless stoppage intent is voiced."
+    },
+    {
+      "pattern": "Delayed NAV Allotment Churn Classification",
+      "description": "User complaining about T+2 NAV delay during a market dip was tagged with churn_type = 'unclear', whereas human marked 'none' because user was still actively investing.",
+      "affected_items": [
+        "reddit_groww_nav_allotment_delay"
+      ],
+      "remedy": "Friction during active investing does not equal churn unless cancellation or pause is explicitly contemplated."
+    }
+  ]
+}

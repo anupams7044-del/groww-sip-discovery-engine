@@ -1,0 +1,528 @@
+[
+  {
+    "id": "THEME_MANDATE_AUTOPAY",
+    "name": "Autopay & Mandate Execution Failures",
+    "description": "UPI Autopay, eNACH mandate bounces, bank server timeouts, and surprise bank penalty charges triggering involuntary drop-off.",
+    "stage_alignment": "payment_reliability",
+    "item_count": 355,
+    "volume_share_pct": 34.6,
+    "severity_score": 5,
+    "addressability_score": 4,
+    "opportunity_score": 69.3,
+    "stage_split": {
+      "not_applicable": 131,
+      "setup": 133,
+      "re_engagement": 8,
+      "payment_reliability": 75,
+      "voluntary_decision_m3_12": 5,
+      "early_experience_m1_3": 3
+    },
+    "churn_split": {
+      "none": 147,
+      "voluntary": 43,
+      "unclear": 72,
+      "involuntary": 93
+    },
+    "segment_signals_split": {
+      "first_time_users": 32,
+      "variable_income": 4,
+      "stable_income": 2
+    },
+    "representative_quotes": [
+      {
+        "quote": "I am little confused on the mandate part. I am about to open the bank account with SBI. Though their PehlaKadam (my baby is less than 10 years old) A/C supports ATM/Debit card and withdrawl facility(as per their website) but I have come to know from different forums that most of the branches said No for ATM card issuance for this kind of accounts. In that case I was just wondering how mandate would be authenticated ?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_187223_post_507690",
+        "source_url": "https://tradingqna.com/t/minor-mfs-bank-account-related-queries/187223/1"
+      },
+      {
+        "quote": "However, orders are still coming in pending list for execution. Actually, I had an old mandate registered which suddenly stopped disappearing so I thought it was part of process to restart automatic SIP. But now it seems I paid bank’s charge for mandate creation and my purpose also wasn’t solved.",
+        "source": "tradingqna",
+        "item_id": "tradingqna_140835_post_387070",
+        "source_url": "https://tradingqna.com/t/coin-automatic-sip/140835/1"
+      },
+      {
+        "quote": "the SIP didn’t execute and I found that it was reporting insufficient funds. Wondering if I am doing this the wrong way ? Also, doesn’t Kite send any notification or SMS of pending SIP order where funds are insufficient ? Is it expected to fail silently ?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_149685_post_412744",
+        "source_url": "https://tradingqna.com/t/right-way-to-setup-etf-sips-without-bank-mandates/149685/1"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Pure payment infrastructure & notification UX. Zero fund advice or FOMO."
+    }
+  },
+  {
+    "id": "THEME_METRIC_JARGON_CONFUSION",
+    "name": "NAV, XIRR & Tax/Exit Load Confusion",
+    "description": "Confusion over delayed NAV allotment (T+1/T+2), divergence between XIRR vs Absolute Returns, and hidden FIFO 1-year exit load clocks.",
+    "stage_alignment": "early_experience_m1_3",
+    "item_count": 227,
+    "volume_share_pct": 22.1,
+    "severity_score": 3,
+    "addressability_score": 5,
+    "opportunity_score": 33.2,
+    "stage_split": {
+      "not_applicable": 89,
+      "setup": 36,
+      "payment_reliability": 10,
+      "voluntary_decision_m3_12": 16,
+      "early_experience_m1_3": 75,
+      "re_engagement": 1
+    },
+    "churn_split": {
+      "none": 116,
+      "unclear": 57,
+      "voluntary": 43,
+      "involuntary": 11
+    },
+    "segment_signals_split": {
+      "first_time_users": 18,
+      "variable_income": 0,
+      "stable_income": 1
+    },
+    "representative_quotes": [
+      {
+        "quote": "Worst Investment app no customer support, one of mail with customer support is going for more than 3 months still no resolution just sorry mail . Lots of data inconsistent in mutual fund portfolio , not in sync with AMC.",
+        "source": "playstore",
+        "item_id": "playstore_Paytm_Money_610a329b_f354_4042_beca_3b90999e5a7f",
+        "source_url": "https://play.google.com/store/apps/details?id=com.paytmmoney&reviewId=610a329b-f354-4042-beca-3b90999e5a7f"
+      },
+      {
+        "quote": "Please give the option to sort portfolio stocks on the basis of XIRR return%. Also, when we click on some place in the stock graph and portfolio graph, it should show us the returns amt & % at that point.",
+        "source": "playstore",
+        "item_id": "playstore_Upstox_e43b4a4c_0f43_4fe6_a244_9f20efd88c8f",
+        "source_url": "https://play.google.com/store/apps/details?id=in.upstox.app&reviewId=e43b4a4c-0f43-4fe6-a244-9f20efd88c8f"
+      },
+      {
+        "quote": "I have taken a Zerodha acoount for Mutual Funds only. But I find that I still have to go to the fund houses directly to invest in Direct funds. My 900/year charge (300 AMC+600 MF) of Zerodha is of no use.",
+        "source": "tradingqna",
+        "item_id": "tradingqna_13579_post_37693",
+        "source_url": "https://tradingqna.com/t/non-listing-of-direct-funds/13579/1"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "In-app plain English explanations, visual net withdrawal calculators."
+    }
+  },
+  {
+    "id": "THEME_EARLY_RED_RETURNS",
+    "name": "Early Red Returns & Volatility Shock (Months 1–3)",
+    "description": "First-time investors panicking upon seeing negative returns during early months, expecting FD-like linear stability.",
+    "stage_alignment": "early_experience_m1_3",
+    "item_count": 108,
+    "volume_share_pct": 10.5,
+    "severity_score": 4,
+    "addressability_score": 5,
+    "opportunity_score": 21.1,
+    "stage_split": {
+      "early_experience_m1_3": 47,
+      "payment_reliability": 4,
+      "not_applicable": 31,
+      "voluntary_decision_m3_12": 18,
+      "re_engagement": 1,
+      "setup": 7
+    },
+    "churn_split": {
+      "unclear": 17,
+      "involuntary": 7,
+      "none": 54,
+      "voluntary": 30
+    },
+    "segment_signals_split": {
+      "first_time_users": 10,
+      "variable_income": 4,
+      "stable_income": 1
+    },
+    "representative_quotes": [
+      {
+        "quote": "Currently my absolute return is -3.2%. I feel demotivated every time I open the app. Is it normal to see negative returns after 8 continuous installments? My friends told me equity is better than FD, but FD would have given 7% guaranteed. Seriously contemplating pausing till market stabilizes.",
+        "source": "reddit",
+        "item_id": "reddit_mf_first_year_red",
+        "source_url": "https://www.reddit.com/r/mutualfunds/comments/1b8xyz/started_sip_last_year_in_red/"
+      },
+      {
+        "quote": "In this process you lose on money, you pay for the charges and it is not a profitable transaction as the sale may be eligible for STCG/LTCG. So smallcase is NOT SMART enough to adjust the shares between small cases in such cases during rebalance.",
+        "source": "tradingqna",
+        "item_id": "tradingqna_39490_post_116113",
+        "source_url": "https://tradingqna.com/t/is-smallcase-rebalance-burning-a-hole-in-your-pocket/39490/1"
+      },
+      {
+        "quote": "In order to Update figures of mutual funds it takes to much of time.... But in other apps like paytmmoney it happens immediately. Moreover, it doesn't show change in profit or loss for one day... It shows on cumulative basis only.",
+        "source": "playstore",
+        "item_id": "playstore_Zerodha_Coin_eb24a003_33be_4730_b27c_90f089d4ec69",
+        "source_url": "https://play.google.com/store/apps/details?id=com.zerodha.coin&reviewId=eb24a003-33be-4730-b27c-90f089d4ec69"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Must use portfolio journey visualization and rupee-cost averaging education, NOT 'market is going up buy now' urgency."
+    }
+  },
+  {
+    "id": "THEME_INFLEXIBLE_PAUSE",
+    "name": "Rigid Pause & Modification Barriers",
+    "description": "Inability to easily pause for more than 1–3 months, reduce installment size dynamically during emergencies, or 30-day notice friction.",
+    "stage_alignment": "voluntary_decision_m3_12",
+    "item_count": 77,
+    "volume_share_pct": 7.5,
+    "severity_score": 5,
+    "addressability_score": 5,
+    "opportunity_score": 18.8,
+    "stage_split": {
+      "voluntary_decision_m3_12": 44,
+      "early_experience_m1_3": 3,
+      "not_applicable": 4,
+      "setup": 12,
+      "re_engagement": 11,
+      "payment_reliability": 3
+    },
+    "churn_split": {
+      "voluntary": 47,
+      "none": 24,
+      "unclear": 3,
+      "involuntary": 3
+    },
+    "segment_signals_split": {
+      "first_time_users": 4,
+      "variable_income": 7,
+      "stable_income": 1
+    },
+    "representative_quotes": [
+      {
+        "quote": "Though, I have not yet shifted my mutual fund portfolio to Zerodha Coin. I would want my entire portfolio, everything on a single platform but following are reasons stopping me to consider Zerodha Coin as Mutual Fund investment platform",
+        "source": "tradingqna",
+        "item_id": "tradingqna_59511_post_169218",
+        "source_url": "https://tradingqna.com/t/10-reasons-why-i-havent-yet-considered-zerodha-coin-for-mutual-fund-investments/59511/1"
+      },
+      {
+        "quote": "I dont want to cancel my SIP in this fund now as the exit load term is another 6 months away. So what if I do not invest a penny more in this fund and cancel the SIP for redemption after the exit load period gets over",
+        "source": "tradingqna",
+        "item_id": "tradingqna_28787_post_79953",
+        "source_url": "https://tradingqna.com/t/exit-load-in-sip/28787/1"
+      },
+      {
+        "quote": "Presently what’s happening that minimum 3 SIPs are executing on same day and same time for example for Saturday, Sunday and Monday and to stop this we are keep going to deactivate the SIP weekly at least once.",
+        "source": "tradingqna",
+        "item_id": "tradingqna_109320_post_302034",
+        "source_url": "https://tradingqna.com/t/zerodha-equity-sip-order-should-have-an-option-to-automatic-stop-or-execute-on-holiday-or-off-day/109320/1"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Provides emergency financial breathers without permanently canceling the SIP discipline."
+    }
+  },
+  {
+    "id": "THEME_PLATFORM_SWITCHING",
+    "name": "Broker Friction, Charges & Regular vs Direct Migration",
+    "description": "Users discovering direct plans on other platforms or frustrated with account transfer and support response times.",
+    "stage_alignment": "setup",
+    "item_count": 148,
+    "volume_share_pct": 14.4,
+    "severity_score": 3,
+    "addressability_score": 3,
+    "opportunity_score": 13,
+    "stage_split": {
+      "not_applicable": 51,
+      "voluntary_decision_m3_12": 17,
+      "setup": 50,
+      "payment_reliability": 18,
+      "early_experience_m1_3": 10,
+      "re_engagement": 2
+    },
+    "churn_split": {
+      "unclear": 25,
+      "voluntary": 23,
+      "none": 84,
+      "involuntary": 16
+    },
+    "segment_signals_split": {
+      "first_time_users": 9,
+      "variable_income": 0,
+      "stable_income": 0
+    },
+    "representative_quotes": [
+      {
+        "quote": "Hi, I am a bit confused and wanted to clarify what would happen in following situation Since coin uses lumpsum model n suppose I have X mutual fund with monthly sip of 2000rs , now coin is depositing that fund using lumpsum model right by default?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_48508_post_140122",
+        "source_url": "https://tradingqna.com/t/lumpsum-sip-vs-amc-sip/48508/1"
+      },
+      {
+        "quote": "kindly improve the mutual fund graphs and provide the minimal financial information and analytical info. Seems lot of improvements required in App. We wait for your improvements. we don't have a filter to select globally investing mutual funds.",
+        "source": "playstore",
+        "item_id": "playstore_Zerodha_Coin_57675ff1_a7e4_4e07_9917_c04a1c9cc2c5",
+        "source_url": "https://play.google.com/store/apps/details?id=com.zerodha.coin&reviewId=57675ff1-a7e4-4e07-9917-c04a1c9cc2c5"
+      },
+      {
+        "quote": "Since 2 years ago I have started SIP in Mutual Fund regular plan. Now here I come to know the difference between mutual fund direct and Regular plan. So, why do I unnecessarily give the commission from my profit to the broker?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_111699_post_307958",
+        "source_url": "https://tradingqna.com/t/about-mf-regular-plan/111699/1"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Direct mutual fund transparency and seamless account switching."
+    }
+  },
+  {
+    "id": "THEME_PEER_SPECULATION_NOISE",
+    "name": "Peer Noise & Speculative FOMO (F&O / IPO Distraction)",
+    "description": "Colleagues and social media hyping 30% weekly gains in options trading or small caps, causing investors to abandon slow SIP compounding.",
+    "stage_alignment": "voluntary_decision_m3_12",
+    "item_count": 46,
+    "volume_share_pct": 4.5,
+    "severity_score": 3,
+    "addressability_score": 3,
+    "opportunity_score": 4,
+    "stage_split": {
+      "not_applicable": 25,
+      "setup": 9,
+      "payment_reliability": 5,
+      "voluntary_decision_m3_12": 7
+    },
+    "churn_split": {
+      "none": 29,
+      "unclear": 3,
+      "voluntary": 7,
+      "involuntary": 7
+    },
+    "segment_signals_split": {
+      "first_time_users": 6,
+      "variable_income": 0,
+      "stable_income": 1
+    },
+    "representative_quotes": [
+      {
+        "quote": "I have recently setup about 4 monthly SIPs in Coin. The initial investment amount for all the SIPs was deducted from my trading account. I wanted to know if the SIP amount every month will also be deducted from my Trading account or directly from my Bank account?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_18333_post_48148",
+        "source_url": "https://tradingqna.com/t/sip-amount-deduction/18333/1"
+      },
+      {
+        "quote": "There are thousands of folks entering trading world coz of these YouTubers/ traders who are basically scamming tier2,3 city folks by selling dreams and while doing so these guys show live fake screenshots or live fake pnl’s",
+        "source": "tradingqna",
+        "item_id": "tradingqna_152081_post_419363",
+        "source_url": "https://tradingqna.com/t/fake-pnl-of-live-trading-finfluencers-scam/152081/1"
+      },
+      {
+        "quote": "I needed some tips regarding SIP intervals for MF/ETF… Say if we are running SIP in index funds or even other funds in situations like current times where index is already trading at its highest point.",
+        "source": "tradingqna",
+        "item_id": "tradingqna_116293_post_319365",
+        "source_url": "https://tradingqna.com/t/better-sip-intervals/116293/1"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Highlights wealth survival, SEBI 90% F&O loss statistics, and milestone celebration."
+    }
+  },
+  {
+    "id": "THEME_YEAR1_UNDERWHELMING",
+    "name": "Underwhelming Year-1 Progress (Expectation Gap)",
+    "description": "Investors completing 10–12 months but feeling demotivated by modest nominal gains (e.g. ₹6k–₹8k), unaware compounding takes 4+ years.",
+    "stage_alignment": "voluntary_decision_m3_12",
+    "item_count": 20,
+    "volume_share_pct": 2,
+    "severity_score": 4,
+    "addressability_score": 4,
+    "opportunity_score": 3.1,
+    "stage_split": {
+      "voluntary_decision_m3_12": 13,
+      "not_applicable": 4,
+      "early_experience_m1_3": 1,
+      "setup": 2
+    },
+    "churn_split": {
+      "none": 5,
+      "voluntary": 14,
+      "unclear": 1
+    },
+    "segment_signals_split": {
+      "first_time_users": 4,
+      "variable_income": 1,
+      "stable_income": 0
+    },
+    "representative_quotes": [
+      {
+        "quote": "If I started today 1 SIP of 500Rs monthly for next 12 months ie. Dec 2018. Stop SIP. Then wait for 3 years ie Dec 2021. Then Withdraw money. So Every SIP complete 3 years which I invest in Dec 2017 to Dec 2018. Will that Strategy works?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_29093_post_81127",
+        "source_url": "https://tradingqna.com/t/sip-of-12-months-with-500rs-in-elss-wisely/29093/1"
+      },
+      {
+        "quote": "After 12 months my 60k investment was worth 61,500. After inflation and taxes, it gave nothing. SIP is strictly for 5+ years, nobody explained this to first timers.",
+        "source": "youtube",
+        "item_id": "youtube_neha_reddy_vizag_2025_02_02T17_40_00Z",
+        "source_url": "https://www.youtube.com/watch?v=sip_experience#youtube_neha_reddy_vizag_2025_02_02T17_40_00Z"
+      },
+      {
+        "quote": "Colleagues in office were making 20% in F&O options trading while my SIP gave 8% in 1 year. I stopped the SIP and transferred my capital to intraday trading.",
+        "source": "youtube",
+        "item_id": "youtube_tanmay_bhattacharya_2024_12_05T13_30_00Z",
+        "source_url": "https://www.youtube.com/watch?v=sip_experience#youtube_tanmay_bhattacharya_2024_12_05T13_30_00Z"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Focus on capital accumulated (habit) rather than speculative future return promises."
+    }
+  },
+  {
+    "id": "THEME_CASHFLOW_TIMING",
+    "name": "Salary Cycle & Debit Date Mismatch",
+    "description": "Fixed SIP debit dates colliding with delayed, variable, or gig salaries, causing bounced debits and bank overdraft penalties.",
+    "stage_alignment": "payment_reliability",
+    "item_count": 15,
+    "volume_share_pct": 1.5,
+    "severity_score": 4,
+    "addressability_score": 4,
+    "opportunity_score": 2.3,
+    "stage_split": {
+      "payment_reliability": 4,
+      "setup": 3,
+      "not_applicable": 1,
+      "voluntary_decision_m3_12": 7
+    },
+    "churn_split": {
+      "involuntary": 4,
+      "voluntary": 6,
+      "none": 5
+    },
+    "segment_signals_split": {
+      "first_time_users": 1,
+      "variable_income": 2,
+      "stable_income": 3
+    },
+    "representative_quotes": [
+      {
+        "quote": "Completed 12 months of active SIP without missing any month! The secret was keeping the debit date 2 days after salary and not opening the portfolio app for the first 6 months.",
+        "source": "youtube",
+        "item_id": "youtube_ritu_malhotra_delhi_2025_06_03T11_22_00Z",
+        "source_url": "https://www.youtube.com/watch?v=sip_experience#youtube_ritu_malhotra_delhi_2025_06_03T11_22_00Z"
+      },
+      {
+        "quote": "Starting a new SIP in the beginning or end of the month Does it make any difference if I start a new SIP in the beginning or end of every month?",
+        "source": "tradingqna",
+        "item_id": "tradingqna_37606_post_109750",
+        "source_url": "https://tradingqna.com/t/starting-a-new-sip-in-the-beginning-or-end-of-the-month/37606/1"
+      },
+      {
+        "quote": "the 10% auto-step-up triggered and caused an overdraft in my account. Please provide manual confirmation before step-up kicks in.",
+        "source": "youtube",
+        "item_id": "youtube_manish_gupta_ca_2024_11_04T09_50_00Z",
+        "source_url": "https://www.youtube.com/watch?v=sip_experience#youtube_manish_gupta_ca_2024_11_04T09_50_00Z"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Smart debit window UX based on salary arrival. Compliant and helpful."
+    }
+  },
+  {
+    "id": "THEME_COMPULSIVE_MONITORING",
+    "name": "Compulsive Portfolio Over-Monitoring & Anxiety",
+    "description": "Checking portfolio multiple times daily like day trading, leading to emotional fatigue, mood swings, and premature SIP cancellation.",
+    "stage_alignment": "early_experience_m1_3",
+    "item_count": 19,
+    "volume_share_pct": 1.9,
+    "severity_score": 3,
+    "addressability_score": 4,
+    "opportunity_score": 2.2,
+    "stage_split": {
+      "not_applicable": 11,
+      "early_experience_m1_3": 4,
+      "setup": 2,
+      "voluntary_decision_m3_12": 2
+    },
+    "churn_split": {
+      "none": 13,
+      "unclear": 2,
+      "voluntary": 4
+    },
+    "segment_signals_split": {
+      "first_time_users": 4,
+      "variable_income": 0,
+      "stable_income": 0
+    },
+    "representative_quotes": [
+      {
+        "quote": "data will not get updated properly even we can see total nav purchased in mf section every day price will not updated 2 or 3ndays later it will get updated",
+        "source": "playstore",
+        "item_id": "playstore_Kotak_Neo_5f0f60ea_84cc_4590_968f_81f8dcef7f97",
+        "source_url": "https://play.google.com/store/apps/details?id=com.kotak.neo&reviewId=5f0f60ea-84cc-4590-968f-81f8dcef7f97"
+      },
+      {
+        "quote": "Paytm Money app can be very useful for beginners with Daily Systematic Investment Plan of daily contributions instead of monthly or quarterly investments",
+        "source": "playstore",
+        "item_id": "playstore_Paytm_Money_01649e23_8720_4c06_bedb_be1388eafc5e",
+        "source_url": "https://play.google.com/store/apps/details?id=com.paytmmoney&reviewId=01649e23-8720-4c06-bedb-be1388eafc5e"
+      },
+      {
+        "quote": "You cant check daily % changes of your investment. 2. The NAV is not updated by 12am in night rather you have to wait till next day noon.",
+        "source": "playstore",
+        "item_id": "playstore_Zerodha_Coin_398ed7fc_4ff4_4098_8ee6_cefbd4976a59",
+        "source_url": "https://play.google.com/store/apps/details?id=com.zerodha.coin&reviewId=398ed7fc-4ff4-4098-8ee6-cefbd4976a59"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "UX friction on intraday p&l checks for SIPs; milestones instead of daily tick flashes."
+    }
+  },
+  {
+    "id": "THEME_UNANCHORED_GOALS",
+    "name": "Unanchored Discretionary SIPs (No Goal Identity)",
+    "description": "Starting SIPs without named goals, making the accumulated funds easy targets for impulse consumption, gadget sales, or vacations.",
+    "stage_alignment": "voluntary_decision_m3_12",
+    "item_count": 10,
+    "volume_share_pct": 1,
+    "severity_score": 3,
+    "addressability_score": 5,
+    "opportunity_score": 1.5,
+    "stage_split": {
+      "not_applicable": 5,
+      "voluntary_decision_m3_12": 3,
+      "early_experience_m1_3": 1,
+      "setup": 1
+    },
+    "churn_split": {
+      "none": 7,
+      "voluntary": 2,
+      "unclear": 1
+    },
+    "segment_signals_split": {
+      "first_time_users": 2,
+      "variable_income": 0,
+      "stable_income": 1
+    },
+    "representative_quotes": [
+      {
+        "quote": "Please add a description field so I can easily differentiate my SIPs. For example, if I’m saving for an AC and a TV, I can add descriptions like ‘SIP for TV’ and ‘SIP for AC’.",
+        "source": "playstore",
+        "item_id": "playstore_Zerodha_Coin_c55a1e9f_1941_42dc_a956_3793f349c24b",
+        "source_url": "https://play.google.com/store/apps/details?id=com.zerodha.coin&reviewId=c55a1e9f-1941-42dc-a956-3793f349c24b"
+      },
+      {
+        "quote": "Against all the MFs should be tagging/purpose/goal - Most of the people invest in SIP for specific purpose like Trip,Child Marriage, Child Education and many more",
+        "source": "playstore",
+        "item_id": "playstore_Groww_1e2bdb23_d9ef_4f56_80c5_4b64fc640ffa",
+        "source_url": "https://play.google.com/store/apps/details?id=com.nextbillion.groww&reviewId=1e2bdb23-d9ef-4f56-80c5-4b64fc640ffa"
+      },
+      {
+        "quote": "During emergency, is it OK to redeem equity mutual fund or will take loan on MF’s because redeeming MF creates deviation from long term investment goals",
+        "source": "tradingqna",
+        "item_id": "tradingqna_137219_post_375694",
+        "source_url": "https://tradingqna.com/t/loan-against-mutual-funds/137219/1"
+      }
+    ],
+    "guardrail_compliance": {
+      "compliant": true,
+      "note": "Enables goal naming (e.g. 'Emergency Buffer', 'Parents Anniversary') without fund steering."
+    }
+  }
+]

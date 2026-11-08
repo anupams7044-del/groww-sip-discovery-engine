@@ -1,0 +1,402 @@
+[
+  {
+    "id": "playstore_seed_002",
+    "source": "playstore",
+    "text": "SIP mandate keeps failing every month! My bank shows sufficient balance but Groww says mandate bounced. I've missed 3 SIP installments now. Very frustrating experience.",
+    "ai_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "involuntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "mandate bounce",
+      "evidence_quote": "My bank shows sufficient balance but Groww says mandate bounced."
+    },
+    "human_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "involuntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "bank mandate bounce"
+    }
+  },
+  {
+    "id": "playstore_seed_007",
+    "source": "playstore",
+    "text": "Stopped my SIP after seeing negative returns for 4 months. I know markets are volatile but I can't afford to lose money right now. Will restart when market recovers.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "negative returns",
+      "evidence_quote": "Stopped my SIP after seeing negative returns for 4 months."
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "negative returns shock"
+    }
+  },
+  {
+    "id": "playstore_seed_009",
+    "source": "playstore",
+    "text": "I reduced my SIP amount from ₹10000 to ₹2000 because of a job change and salary cut. Groww makes it easy to modify SIP amount but I wish they had a feature to pause temporarily.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "reduced",
+      "first_time": "unknown",
+      "trigger": "salary cut",
+      "evidence_quote": "I reduced my SIP amount from ₹10000 to ₹2000 because of a job change and salary cut."
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "reduced",
+      "first_time": "unknown",
+      "trigger": "income reduction"
+    }
+  },
+  {
+    "id": "playstore_seed_011",
+    "source": "playstore",
+    "text": "My SIP of ₹1000 is too small I think. Returns on mutual fund are showing minus 2%. My friend told me to stop SIP and put money in FD instead. Confused what to do.",
+    "ai_label": {
+      "lifecycle_stage": "early_experience_m1_3",
+      "churn_type": "considering_stopping",
+      "action": "considering_stopping",
+      "first_time": "yes",
+      "trigger": "friend advised FD",
+      "evidence_quote": "My friend told me to stop SIP and put money in FD instead."
+    },
+    "human_label": {
+      "lifecycle_stage": "early_experience_m1_3",
+      "churn_type": "considering_stopping",
+      "action": "considering_stopping",
+      "first_time": "yes",
+      "trigger": "peer advice towards FD"
+    }
+  },
+  {
+    "id": "playstore_seed_004",
+    "source": "playstore",
+    "text": "Groww made it super easy to start a SIP. I'm investing ₹5000 monthly in Nifty 50 index fund. Good app for beginners who want to do systematic investment.",
+    "ai_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "none",
+      "action": "started",
+      "first_time": "yes",
+      "trigger": "smooth onboarding",
+      "evidence_quote": "Groww made it super easy to start a SIP."
+    },
+    "human_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "none",
+      "action": "started",
+      "first_time": "yes",
+      "trigger": "easy start"
+    }
+  },
+  {
+    "id": "reddit_mf_first_year_red",
+    "source": "reddit",
+    "text": "Started SIP of ₹7,500 across 3 funds 8 months ago. Currently my absolute return is -3.2%. I feel demotivated every time I open the app. Is it normal to see negative returns after 8 continuous installments? Seriously contemplating pausing.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "considering_stopping",
+      "action": "considering_stopping",
+      "first_time": "yes",
+      "trigger": "demotivated by -3.2% return",
+      "evidence_quote": "Currently my absolute return is -3.2%. I feel demotivated every time I open the app."
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "considering_stopping",
+      "action": "considering_stopping",
+      "first_time": "yes",
+      "trigger": "negative return after 8 months"
+    }
+  },
+  {
+    "id": "reddit_groww_mandate_bounce",
+    "source": "reddit",
+    "text": "Groww UPI autopay failed yesterday due to technical issue on their side, and ICICI bank slapped a ₹590 ECS bounce charge on my account! Cancelled all 4 active SIPs immediately.",
+    "ai_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "involuntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "₹590 bank bounce charge",
+      "evidence_quote": "ICICI bank slapped a ₹590 ECS bounce charge on my account! Cancelled all 4 active SIPs immediately."
+    },
+    "human_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "bank bounce fee penalty"
+    }
+  },
+  {
+    "id": "reddit_investments_overmonitoring",
+    "source": "reddit",
+    "text": "I started investing via SIP 6 months ago. I find myself opening Groww 5 to 6 times a day, watching the 1-day return fluctuate by a few hundred rupees. Modern UI makes it feel like a casino slot machine.",
+    "ai_label": {
+      "lifecycle_stage": "early_experience_m1_3",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "compulsive checking",
+      "evidence_quote": "I find myself opening Groww 5 to 6 times a day, watching the 1-day return fluctuate"
+    },
+    "human_label": {
+      "lifecycle_stage": "early_experience_m1_3",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "daily overmonitoring"
+    }
+  },
+  {
+    "id": "reddit_mf_stepup_regret",
+    "source": "reddit",
+    "text": "Selected a 15% annual step-up SIP. Appraisal delayed, rent up by 20%, and increased SIP triggered overdraft. Groww doesn't have an option to scale down step-up without deleting mandate. Had to cancel entire SIP.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "unaffordable step-up",
+      "evidence_quote": "Groww doesn't have an option to 'scale down' or remove the step-up without terminating the existing mandate"
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "inflexible step-up modification"
+    }
+  },
+  {
+    "id": "reddit_groww_nav_allotment_delay",
+    "source": "reddit",
+    "text": "On Monday market crash, SIP was scheduled. Amount debited 8 AM. But Groww allotted units based on Wednesday NAV after market bounced back 2%! What's the point of SIP discipline if broker can't execute orders on time?",
+    "ai_label": {
+      "lifecycle_stage": "early_experience_m1_3",
+      "churn_type": "unclear",
+      "action": "continuing",
+      "first_time": "unknown",
+      "trigger": "delayed NAV allotment",
+      "evidence_quote": "Groww allotted units based on Wednesday's NAV after market had already bounced back 2%!"
+    },
+    "human_label": {
+      "lifecycle_stage": "early_experience_m1_3",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "unknown",
+      "trigger": "NAV execution delay"
+    }
+  },
+  {
+    "id": "reddit_investments_peer_noise",
+    "source": "reddit",
+    "text": "I am 24, doing a ₹5k monthly SIP for 11 months. During lunch breaks, colleagues boast about making 30-40% in SME IPOs. It takes immense mental grit not to stop my SIP and jump into high-risk gambling.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "colleagues making 40% in IPOs",
+      "evidence_quote": "It takes immense mental grit not to stop my SIP and jump into high-risk gambling."
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "peer speculation FOMO"
+    }
+  },
+  {
+    "id": "reddit_mf_emergency_cash_crunch",
+    "source": "reddit",
+    "text": "Between Diwali gifts and medical expenses, wanted to pause SIP for 2 months. In Groww, pausing requires 30 days prior notice for certain AMC SIPs. Debit still went through with penalty. Why is pause not instant?",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "involuntary",
+      "action": "paused",
+      "first_time": "unknown",
+      "trigger": "30 days pause notice requirement",
+      "evidence_quote": "In Groww, pausing requires at least 30 days prior notice for certain AMC SIPs."
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "paused",
+      "first_time": "unknown",
+      "trigger": "inflexible pause policy"
+    }
+  },
+  {
+    "id": "youtube_amit_sharma_tech_2024_04_02T14_22_00Z",
+    "source": "youtube",
+    "text": "My SIP date was 5th every month. Salary gets credited on 7th. Autopay failed twice and HDFC bank charged me Rs 590 bounce fee each time! Groww didn't warn or retry before the bounce charge. I cancelled the entire SIP in frustration.",
+    "ai_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "involuntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "salary date vs debit date mismatch",
+      "evidence_quote": "Autopay failed twice and HDFC bank charged me Rs 590 bounce fee each time! Groww didn't warn or retry before the bounce charge. I cancelled the entire SIP in frustration."
+    },
+    "human_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "salary timing mismatch and bounce penalty"
+    }
+  },
+  {
+    "id": "youtube_sandeep_nair_blr_2024_06_10T16_05_00Z",
+    "source": "youtube",
+    "text": "SIP pause button in Groww only allows pausing for 3 months maximum. I had an unexpected medical expense and needed 6 months break. Because I couldn't extend pause, I had to stop the SIP permanently.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "max 3 months pause limit",
+      "evidence_quote": "Because I couldn't extend pause, I had to stop the SIP permanently."
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "pause duration restriction"
+    }
+  },
+  {
+    "id": "youtube_divya_iyer_mumbai_2025_03_12T16_55_00Z",
+    "source": "youtube",
+    "text": "Started SIP during bull market peak in September. For the next 6 months it was consistently in red. Kept wondering if I chose the wrong fund. Switched to another app thinking Groww fund selection was bad.",
+    "ai_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "switched",
+      "first_time": "yes",
+      "trigger": "6 months in red",
+      "evidence_quote": "For the next 6 months it was consistently in red. Kept wondering if I chose the wrong fund. Switched to another app"
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "voluntary",
+      "action": "switched",
+      "first_time": "yes",
+      "trigger": "prolonged negative returns"
+    }
+  },
+  {
+    "id": "youtube_ritu_malhotra_delhi_2025_06_03T11_22_00Z",
+    "source": "youtube",
+    "text": "Completed 12 months of active SIP without missing any month! The secret was keeping the debit date 2 days after salary and not opening the portfolio app for the first 6 months. Milestone tracking helped a lot.",
+    "ai_label": {
+      "lifecycle_stage": "re_engagement",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "12 month milestone success",
+      "evidence_quote": "Completed 12 months of active SIP without missing any month!"
+    },
+    "human_label": {
+      "lifecycle_stage": "voluntary_decision_m3_12",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "12-month discipline milestone"
+    }
+  },
+  {
+    "id": "appstore_https___apps_apple_com_review_seed_3",
+    "source": "appstore",
+    "text": "Mandate registration takes too long: I registered my autopay mandate 2 weeks ago and it is still showing pending. Because of this my SIP payment was missed this month. Very frustrating experience with the NACH registration.",
+    "ai_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "involuntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "slow mandate approval",
+      "evidence_quote": "Because of this my SIP payment was missed this month."
+    },
+    "human_label": {
+      "lifecycle_stage": "payment_reliability",
+      "churn_type": "involuntary",
+      "action": "stopped",
+      "first_time": "unknown",
+      "trigger": "eNACH registration delay"
+    }
+  },
+  {
+    "id": "tradingqna_126522_post_343943",
+    "source": "tradingqna",
+    "text": "Monthly vs Weekly SIP - My personal experience. I have had monthly sips for 4 funds but at different times of month instead of all triggering on 1st of month. I was curious if this had any benefit on rupee cost averaging.",
+    "ai_label": {
+      "lifecycle_stage": "not_applicable",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "no",
+      "trigger": "weekly vs monthly optimization",
+      "evidence_quote": "I have had monthly sips for 4 funds but at different times of month"
+    },
+    "human_label": {
+      "lifecycle_stage": "not_applicable",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "no",
+      "trigger": "SIP frequency optimization"
+    }
+  },
+  {
+    "id": "tradingqna_136646_post_373766",
+    "source": "tradingqna",
+    "text": "SIP Insurance on continued / new SIP on MF. Can anybody tell more about SIP insurance & how to avail and other criteria related to it? Does it stop if I miss an installment?",
+    "ai_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "unclear",
+      "action": "unclear",
+      "first_time": "unknown",
+      "trigger": "inquiry about insurance with SIP",
+      "evidence_quote": "Does it stop if I miss an installment?"
+    },
+    "human_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "unknown",
+      "trigger": "SIP bundled insurance criteria"
+    }
+  },
+  {
+    "id": "tradingqna_58552_post_166536",
+    "source": "tradingqna",
+    "text": "SIP on Coin different than a conventional SIP. Hi, I would like to know in terms of profit/loss how SIP on Coin different than a conventional SIP? Coin creates fresh buy orders every month instead of AMC SIP.",
+    "ai_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "confusion on Coin vs AMC SIP mechanism",
+      "evidence_quote": "Coin creates fresh buy orders every month instead of AMC SIP."
+    },
+    "human_label": {
+      "lifecycle_stage": "setup",
+      "churn_type": "none",
+      "action": "continuing",
+      "first_time": "yes",
+      "trigger": "demat SIP vs AMC SIP confusion"
+    }
+  }
+]

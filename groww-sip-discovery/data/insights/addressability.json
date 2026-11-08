@@ -1,0 +1,42 @@
+{
+  "THEME_MANDATE_AUTOPAY": {
+    "addressability": 4,
+    "rationale": "High product addressability: Smart pre-debit notifications, retry automation, and fallback payment links prevent mandate drops."
+  },
+  "THEME_EARLY_RED_RETURNS": {
+    "addressability": 5,
+    "rationale": "Very high UX addressability: Milestone-based affirmations, portfolio health shields, and volatility reframing without advice."
+  },
+  "THEME_COMPULSIVE_MONITORING": {
+    "addressability": 4,
+    "rationale": "High product addressability: Intentional slow-cadence digest mode, replacing day-trading red/green flashes with SIP accumulation milestone badges."
+  },
+  "THEME_CASHFLOW_TIMING": {
+    "addressability": 4,
+    "rationale": "High product addressability: Flexible 5-day debit window synced with salary credit instead of rigid single-day debit."
+  },
+  "THEME_INFLEXIBLE_PAUSE": {
+    "addressability": 5,
+    "rationale": "Extremely high UX addressability: One-tap instant 1-6 month pause and partial installment scaling during emergencies."
+  },
+  "THEME_YEAR1_UNDERWHELMING": {
+    "addressability": 4,
+    "rationale": "High UX addressability: 12-month completion milestone certificate, habit-streak tracker, celebrating total principal saved."
+  },
+  "THEME_METRIC_JARGON_CONFUSION": {
+    "addressability": 5,
+    "rationale": "Pure UX/content addressability: Interactive 'Net in Hand' return visualizer and tooltips explaining XIRR and FIFO tax rules."
+  },
+  "THEME_PEER_SPECULATION_NOISE": {
+    "addressability": 3,
+    "rationale": "Medium addressability: In-app investor literacy nudges showing historical patience vs F&O risk statistics."
+  },
+  "THEME_UNANCHORED_GOALS": {
+    "addressability": 5,
+    "rationale": "Very high product addressability: One-click goal labeling ('Emergency Fund', 'House Down Payment') providing emotional retention."
+  },
+  "THEME_PLATFORM_SWITCHING": {
+    "addressability": 3,
+    "rationale": "Moderate addressability: Direct plan comparison calculator and zero-friction external portfolio import."
+  }
+}
