@@ -49,7 +49,7 @@ export function MetricTreeView() {
   const STAGES_DATA: StageNode[] = [
     {
       id: 1,
-      name: "Stage 1: Setup & Onboarding",
+      name: "Stage 1: Setup & Mandate Activation",
       lens: "Onboarding Flow",
       symbol: "S_setup",
       stageKey: "setup",
@@ -460,44 +460,50 @@ export function MetricTreeView() {
                   {/* Stage Node (Level 1) */}
                   <div
                     onClick={() => setSelectedStageId(st.id)}
-                    className={`rounded-2xl p-4 border transition-all cursor-pointer relative space-y-3 ${
+                    className={`rounded-2xl p-4 border transition-all cursor-pointer relative space-y-3 min-h-[160px] flex flex-col justify-between ${
                       isSelected
                         ? "bg-[#232734] border-[#00D09C] shadow-xl ring-2 ring-[#00D09C]/30"
                         : "bg-[#1C2028] border-[#282D3D] hover:border-[#3E455B]"
                     }`}
                   >
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="text-[10px] font-bold text-[#696C7C] uppercase tracking-wider">
-                        STAGE {st.id} • {st.symbol}
-                      </span>
-                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#121212] text-[#00D09C] border border-[#282D3D]">
-                        {st.volumeCount} items ({st.sharePct})
-                      </span>
+                    <div className="space-y-2.5">
+                      <div className="flex items-center justify-between gap-1">
+                        <span className="text-[10px] font-bold text-[#696C7C] uppercase tracking-wider">
+                          STAGE {st.id} • {st.symbol}
+                        </span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#121212] text-[#00D09C] border border-[#282D3D]">
+                          {st.volumeCount} items ({st.sharePct})
+                        </span>
+                      </div>
+
+                      <div>
+                        <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#121212] text-gray-300 border border-[#282D3D] inline-block mb-1">
+                          {st.lens}
+                        </span>
+                        <h4 className="font-bold text-white text-sm leading-snug min-h-[40px] flex items-center">
+                          {st.name}
+                        </h4>
+                      </div>
                     </div>
 
-                    <div>
-                      <span className="text-[10px] font-semibold px-2 py-0.5 rounded bg-[#121212] text-gray-300 border border-[#282D3D] inline-block mb-1">
-                        {st.lens}
-                      </span>
-                      <h4 className="font-bold text-white text-sm leading-snug">{st.name}</h4>
-                    </div>
+                    <div className="space-y-2 pt-2 border-t border-[#282D3D]">
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-[#9EA0A8]">Target Rate:</span>
+                        <strong className="text-white">{st.targetRate}</strong>
+                      </div>
 
-                    <div className="flex items-center justify-between text-xs pt-1 border-t border-[#282D3D]">
-                      <span className="text-[#9EA0A8]">Target Rate:</span>
-                      <strong className="text-white">{st.targetRate}</strong>
-                    </div>
-
-                    {/* Expand / Collapse Sub-Drivers Button */}
-                    <div className="pt-1 flex items-center justify-between">
-                      <button
-                        onClick={(e) => toggleStageExpand(st.id, e)}
-                        className="text-[11px] font-semibold text-[#00D09C] hover:underline flex items-center gap-1 cursor-pointer"
-                      >
-                        <span>{isExpanded ? "▾ Hide 3 Drivers" : "▸ Expand 3 Drivers"}</span>
-                      </button>
-                      <span className="text-[10px] text-[#696C7C]">
-                        {isSelected ? "● Active View" : "Click to view"}
-                      </span>
+                      {/* Expand / Collapse Sub-Drivers Button */}
+                      <div className="flex items-center justify-between">
+                        <button
+                          onClick={(e) => toggleStageExpand(st.id, e)}
+                          className="text-[11px] font-semibold text-[#00D09C] hover:underline flex items-center gap-1 cursor-pointer"
+                        >
+                          <span>{isExpanded ? "▾ Hide 3 Drivers" : "▸ Expand 3 Drivers"}</span>
+                        </button>
+                        <span className="text-[10px] text-[#696C7C]">
+                          {isSelected ? "● Active View" : "Click to view"}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
