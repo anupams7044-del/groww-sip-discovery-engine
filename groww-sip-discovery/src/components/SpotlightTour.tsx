@@ -1,71 +1,53 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { NavTab } from "./Navbar";
 
-export interface SpotlightStep {
+export interface TourGuideStep {
   id: string;
   milestoneNum: number;
   totalMilestones: number;
-  milestoneBadge: string;
-  targetTab: NavTab;
+  tabId: NavTab;
   targetElementId: string;
+  badge: string;
   title: string;
-  subtitle: string;
-  description: string;
-  keyTakeaway: string;
-  badgeColor: string;
-  popoverPosition: "bottom" | "top";
+  shortNote: string;
+  takeaway: string;
 }
 
-const SPOTLIGHT_STEPS: SpotlightStep[] = [
+const TOUR_STEPS: TourGuideStep[] = [
   {
-    id: "step-dual-lens",
+    id: "step-1",
     milestoneNum: 1,
     totalMilestones: 3,
-    milestoneBadge: "Milestone 1 • Discovery Synthesis",
-    targetTab: "home",
+    tabId: "home",
     targetElementId: "tour-dual-lens",
-    title: "The Dual-Lens Churn Reality: Behavioral vs. Operational",
-    subtitle: "Root Disease vs. Observable Breaking Point",
-    badgeColor: "bg-[#5367FF]/15 text-[#5367FF] border-[#5367FF]/30",
-    description:
-      "Decomposing 1,025 public investor complaints reveals two interconnected dimensions: an upstream behavioral vulnerability (uncalibrated commitments & zero emergency buffer) that triggers downstream operational payment disasters.",
-    keyTakeaway:
-      "Behavioral Root Cause (Left, ~72% of retention gain) vs. Operational Shield (Right, ~28% of retention gain).",
-    popoverPosition: "bottom"
+    badge: "1. Core Discovery",
+    title: "The Dual-Lens Churn Reality",
+    shortNote: "Separates upstream behavioral overcommitment from downstream bank bounce penalties.",
+    takeaway: "Behavioral root causes drive ~72% of retention gain; operational shields drive ~28%."
   },
   {
-    id: "step-metric-tree",
+    id: "step-2",
     milestoneNum: 2,
     totalMilestones: 3,
-    milestoneBadge: "Milestone 2 • Mathematical Funnel",
-    targetTab: "tree",
+    tabId: "tree",
     targetElementId: "tour-root-node",
-    title: "12-Month Active SIP Retention KPI Tree",
-    subtitle: "Root North Star Node → 4 Stages → 12 Sub-Drivers",
-    badgeColor: "bg-[#00D09C]/15 text-[#00D09C] border-[#00D09C]/30",
-    description:
-      "Mathematically decomposes the North Star metric (28.0% baseline → 45.4% target) into 4 sequential journey stages. Each stage expands into 3 measurable driver leaf nodes with KPI formulas and authentic scraped quotes.",
-    keyTakeaway:
-      "Click any node in the tree to slide open the deep-dive inspector drawer with exact mathematical sensitivity and user quotes.",
-    popoverPosition: "bottom"
+    badge: "2. Metric Funnel",
+    title: "12-Month Retention KPI Tree",
+    shortNote: "Decomposes 12-month active retention (28.0% → 45.4%) into 4 sequential journey stages.",
+    takeaway: "Click any node in the tree to view its formula, sensitivity, and real user evidence."
   },
   {
-    id: "step-opportunities",
+    id: "step-3",
     milestoneNum: 3,
     totalMilestones: 3,
-    milestoneBadge: "Milestone 3 • PM Prioritization",
-    targetTab: "opportunities",
+    tabId: "opportunities",
     targetElementId: "tour-single-solution-banner",
-    title: "The 1-Solution, Dual-Impact Framework",
-    subtitle: "Safe SIP Sizer • Active Focus & Passive Shield",
-    badgeColor: "bg-[#FFB61B]/15 text-[#FFB61B] border-[#FFB61B]/30",
-    description:
-      "Instead of building 10 disjointed features or rewriting bank gateways, we deploy ONE core solution: Safe SIP Sizer. It directly solves Track A (cash-flow buffer) and passively eliminates Track B (bank bounce penalties), while intentionally scoping out uncontrollable external noise.",
-    keyTakeaway:
-      "Direct Active Focus (Safe SIP Sizer) + Passive Operational Shield + Deliberately Out of Scope (SEBI T+1/T+2 & Bank Host Outages).",
-    popoverPosition: "top"
+    badge: "3. Product Scope",
+    title: "1-Solution, Dual-Impact Scope",
+    shortNote: "Safe SIP Sizer directly fixes cash-flow deficits and passively eliminates bank bounce fees.",
+    takeaway: "Proves high PM prioritization: zero extra banking code needed to stop ECS penalties."
   }
 ];
 
@@ -73,83 +55,38 @@ interface SpotlightTourProps {
   isOpen: boolean;
   onClose: () => void;
   onNavigateTab: (tab: NavTab) => void;
-  initialStepIndex?: number;
 }
 
-export function SpotlightTour({
-  isOpen,
-  onClose,
-  onNavigateTab,
-  initialStepIndex = 0
-}: SpotlightTourProps) {
-  const [currentStepIndex, setCurrentStepIndex] = useState(initialStepIndex);
-  const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
-  const [isReady, setIsReady] = useState(false);
-  const popoverRef = useRef<HTMLDivElement>(null);
+export function SpotlightTour({ isOpen, onClose, onNavigateTab }: SpotlightTourProps) {
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
 
-  const step = SPOTLIGHT_STEPS[currentStepIndex];
+  const step = TOUR_STEPS[currentStepIndex];
 
-  // Measure and align target element spotlight position
-  const updateSpotlightPosition = useCallback(() => {
-    if (!step) return;
-    const el = document.getElementById(step.targetElementId);
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      if (rect.width > 50 && rect.height > 50) {
-        setTargetRect(rect);
-        setIsReady(true);
-        return;
-      }
-    }
-    setTargetRect(null);
-    setIsReady(false);
-  }, [step]);
-
-  // Synchronize tab switch and scroll to target element
+  // Navigate and scroll to the target element without blocking it
   useEffect(() => {
     if (!isOpen || !step) return;
 
-    setIsReady(false);
-    onNavigateTab(step.targetTab);
+    onNavigateTab(step.tabId);
 
     const timer = setTimeout(() => {
       const el = document.getElementById(step.targetElementId);
       if (el) {
-        // Scroll element to appropriate position leaving room for docked popover
-        const blockPosition = step.popoverPosition === "top" ? "end" : "start";
-        el.scrollIntoView({ behavior: "smooth", block: blockPosition });
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Flash a subtle outline on the target card to draw the eye
+        el.classList.add("ring-2", "ring-[#00D09C]", "ring-offset-4", "ring-offset-[#121212]");
         setTimeout(() => {
-          updateSpotlightPosition();
-        }, 300);
-      } else {
-        updateSpotlightPosition();
+          el.classList.remove("ring-2", "ring-[#00D09C]", "ring-offset-4", "ring-offset-[#121212]");
+        }, 2200);
       }
-    }, 250);
+    }, 200);
 
     return () => clearTimeout(timer);
-  }, [isOpen, currentStepIndex, step, onNavigateTab, updateSpotlightPosition]);
-
-  // Re-measure on window resize and scroll
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleUpdate = () => {
-      updateSpotlightPosition();
-    };
-
-    window.addEventListener("resize", handleUpdate);
-    window.addEventListener("scroll", handleUpdate, true);
-
-    return () => {
-      window.removeEventListener("resize", handleUpdate);
-      window.removeEventListener("scroll", handleUpdate, true);
-    };
-  }, [isOpen, updateSpotlightPosition]);
+  }, [isOpen, currentStepIndex, step, onNavigateTab]);
 
   if (!isOpen || !step) return null;
 
   const handleNext = () => {
-    if (currentStepIndex < SPOTLIGHT_STEPS.length - 1) {
+    if (currentStepIndex < TOUR_STEPS.length - 1) {
       setCurrentStepIndex((prev) => prev + 1);
     } else {
       handleComplete();
@@ -164,134 +101,81 @@ export function SpotlightTour({
 
   const handleComplete = () => {
     try {
-      localStorage.setItem("has_seen_spotlight_tour", "true");
       localStorage.setItem("has_seen_groww_tour", "true");
     } catch {}
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden pointer-events-auto">
-      {/* 1. Backdrop Overlay */}
-      <div 
-        onClick={handleComplete}
-        className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity duration-300"
-      />
-
-      {/* 2. Spotlight Cutout & Glowing Halo around Target Element */}
-      {targetRect && isReady && (
-        <div
-          style={{
-            position: "fixed",
-            top: targetRect.top - 6,
-            left: targetRect.left - 6,
-            width: targetRect.width + 12,
-            height: targetRect.height + 12,
-            boxShadow: "0 0 0 9999px rgba(0, 0, 0, 0.78), 0 0 32px rgba(0, 208, 156, 0.5)",
-            borderRadius: "16px",
-            border: "2px solid #00D09C",
-            pointerEvents: "none",
-            zIndex: 55,
-            transition: "all 0.35s cubic-bezier(0.16, 1, 0.3, 1)"
-          }}
-        >
-          {/* Animated Pulsing Beacon Pin at Top-Left */}
-          <div className="absolute -top-3.5 -left-3.5 flex items-center justify-center">
-            <span className="w-8 h-8 rounded-full bg-[#00D09C]/40 animate-ping absolute"></span>
-            <span className="w-6 h-6 rounded-full bg-[#00D09C] text-black font-extrabold text-[11px] flex items-center justify-center shadow-lg border-2 border-[#121212] z-10">
-              {step.milestoneNum}
-            </span>
-          </div>
-
-          {/* Pulse Ripple Pill Label */}
-          <div className="absolute -bottom-3.5 right-4 bg-[#1C2028] border border-[#00D09C]/60 text-[#00D09C] px-2.5 py-0.5 rounded-full text-[10px] font-bold shadow-md tracking-wider uppercase">
-            Focus Area
-          </div>
+    /* Pinned floating guide pill at bottom-right - ZERO dark overlays, ZERO screen blocking */
+    <aside 
+      aria-label="Interactive Fellowship Tour Guide"
+      className="fixed bottom-6 right-6 z-50 max-w-sm w-[calc(100vw-3rem)] bg-[#1C2028]/95 backdrop-blur-md border border-[#00D09C] rounded-2xl shadow-[0_12px_36px_rgba(0,0,0,0.8)] p-4 sm:p-5 space-y-3 animate-in slide-in-from-bottom-5 duration-300"
+    >
+      {/* Top row: step progress & close button */}
+      <div className="flex items-center justify-between border-b border-[#282D3D] pb-2 text-xs">
+        <div className="flex items-center gap-1.5 font-bold text-[#00D09C]">
+          <span className="w-2 h-2 rounded-full bg-[#00D09C] animate-pulse"></span>
+          <span>{step.badge}</span>
         </div>
-      )}
-
-      {/* 3. Non-Obstructive Docked Popover Card (Docked at Bottom or Top so Target is completely visible) */}
-      <div 
-        className={`fixed left-0 right-0 z-60 flex justify-center px-4 pointer-events-none transition-all duration-300 ${
-          step.popoverPosition === "top" ? "top-6" : "bottom-6"
-        }`}
-      >
-        <div
-          ref={popoverRef}
-          className="bg-[#1C2028]/95 backdrop-blur-md border-2 border-[#00D09C] rounded-2xl p-5 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.95)] max-w-xl w-full space-y-3.5 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto"
-        >
-          {/* Milestone Indicator & Step Progress */}
-          <div className="flex items-center justify-between gap-2 border-b border-[#282D3D] pb-2.5">
-            <div className="flex items-center gap-2">
-              <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${step.badgeColor} uppercase tracking-wide`}>
-                {step.milestoneBadge}
-              </span>
-            </div>
-            <div className="flex items-center gap-2 text-xs font-mono">
-              <span className="text-[#00D09C] font-bold">
-                {step.milestoneNum} / {step.totalMilestones}
-              </span>
-              <span className="text-[#696C7C]">Milestones</span>
-            </div>
-          </div>
-
-          {/* Milestone Progress Bar */}
-          <div className="w-full bg-[#232734] h-1.5 rounded-full overflow-hidden border border-[#282D3D]">
-            <div
-              className="bg-[#00D09C] h-full transition-all duration-300"
-              style={{ width: `${(step.milestoneNum / step.totalMilestones) * 100}%` }}
-            />
-          </div>
-
-          {/* Title & Description */}
-          <div className="space-y-1">
-            <div className="text-[11px] text-[#9EA0A8] font-semibold">{step.subtitle}</div>
-            <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug tracking-tight">
-              {step.title}
-            </h3>
-            <p className="text-xs text-[#C5C7D0] leading-relaxed pt-0.5">
-              {step.description}
-            </p>
-          </div>
-
-          {/* Key Takeaway Callout Box */}
-          <div className="bg-[#232734] border border-[#282D3D] rounded-xl p-3 text-xs space-y-1">
-            <div className="flex items-center gap-1.5 text-[#00D09C] font-bold text-[11px] uppercase tracking-wide">
-              <span>💡</span> Key PM Takeaway:
-            </div>
-            <p className="text-gray-300 text-[11px] leading-relaxed">
-              {step.keyTakeaway}
-            </p>
-          </div>
-
-          {/* Action Controls */}
-          <div className="flex items-center justify-between pt-2 border-t border-[#282D3D]">
-            <button
-              onClick={handleComplete}
-              className="text-xs text-[#9EA0A8] hover:text-white transition-colors cursor-pointer font-medium"
-            >
-              Skip Onboarding
-            </button>
-
-            <div className="flex items-center gap-2">
-              {currentStepIndex > 0 && (
-                <button
-                  onClick={handleBack}
-                  className="px-3 py-1.5 text-xs font-semibold text-gray-200 bg-[#232734] hover:bg-[#2A2F3E] border border-[#282D3D] rounded-lg transition-colors cursor-pointer"
-                >
-                  Back
-                </button>
-              )}
-              <button
-                onClick={handleNext}
-                className="px-4 py-1.5 text-xs font-bold text-black bg-[#00D09C] hover:bg-[#00B386] rounded-lg transition-colors shadow-sm cursor-pointer flex items-center gap-1.5"
-              >
-                <span>{currentStepIndex === SPOTLIGHT_STEPS.length - 1 ? "Complete Tour 🚀" : "Next Milestone →"}</span>
-              </button>
-            </div>
-          </div>
+        <div className="flex items-center gap-2">
+          <span className="text-[11px] text-[#9EA0A8] font-mono">
+            {step.milestoneNum} of {step.totalMilestones}
+          </span>
+          <button
+            onClick={handleComplete}
+            aria-label="Close tour"
+            className="text-[#9EA0A8] hover:text-white p-1 rounded-md hover:bg-[#232734] transition-colors cursor-pointer text-sm font-bold leading-none ml-1"
+          >
+            ✕
+          </button>
         </div>
       </div>
-    </div>
+
+      {/* Title & Short 1-2 line Note */}
+      <div className="space-y-1">
+        <h4 className="text-sm font-extrabold text-white leading-tight">
+          {step.title}
+        </h4>
+        <p className="text-xs text-[#C5C7D0] leading-snug">
+          {step.shortNote}
+        </p>
+      </div>
+
+      {/* Mini PM takeaway callout */}
+      <div className="bg-[#232734] border border-[#282D3D] rounded-lg p-2.5 text-[11px] text-gray-300 leading-snug">
+        <strong className="text-[#00D09C] block text-[10px] uppercase tracking-wider mb-0.5">
+          Key Takeaway:
+        </strong>
+        {step.takeaway}
+      </div>
+
+      {/* Navigation Buttons */}
+      <div className="flex items-center justify-between pt-1">
+        <button
+          onClick={handleComplete}
+          className="text-[11px] text-[#696C7C] hover:text-[#9EA0A8] transition-colors cursor-pointer"
+        >
+          Dismiss
+        </button>
+
+        <div className="flex items-center gap-1.5">
+          {currentStepIndex > 0 && (
+            <button
+              onClick={handleBack}
+              className="px-2.5 py-1 text-xs font-semibold text-gray-300 bg-[#232734] hover:bg-[#2A2F3E] rounded-md border border-[#282D3D] transition-colors cursor-pointer"
+            >
+              Back
+            </button>
+          )}
+          <button
+            onClick={handleNext}
+            className="px-3.5 py-1 text-xs font-bold text-black bg-[#00D09C] hover:bg-[#00B386] rounded-md transition-colors shadow-sm cursor-pointer"
+          >
+            {currentStepIndex === TOUR_STEPS.length - 1 ? "Got it! 🚀" : "Next →"}
+          </button>
+        </div>
+      </div>
+    </aside>
   );
 }
