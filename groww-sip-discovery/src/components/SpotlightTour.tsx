@@ -15,7 +15,6 @@ export interface SpotlightStep {
   description: string;
   keyTakeaway: string;
   badgeColor: string;
-  preferredPlacement?: "bottom" | "top" | "center";
 }
 
 const SPOTLIGHT_STEPS: SpotlightStep[] = [
@@ -32,8 +31,7 @@ const SPOTLIGHT_STEPS: SpotlightStep[] = [
     description:
       "Decomposing 1,025 public investor complaints reveals two interconnected dimensions: an upstream behavioral vulnerability (uncalibrated commitments & zero emergency buffer) that triggers downstream operational payment disasters.",
     keyTakeaway:
-      "Behavioral Root Cause (Left, ~72% of retention gain) vs. Operational Shield (Right, ~28% of retention gain).",
-    preferredPlacement: "bottom"
+      "Behavioral Root Cause (Left, ~72% of retention gain) vs. Operational Shield (Right, ~28% of retention gain)."
   },
   {
     id: "step-metric-tree",
@@ -48,8 +46,7 @@ const SPOTLIGHT_STEPS: SpotlightStep[] = [
     description:
       "Mathematically decomposes the North Star metric (28.0% baseline → 45.4% target) into 4 sequential journey stages. Each stage expands into 3 measurable driver leaf nodes with KPI formulas and authentic scraped quotes.",
     keyTakeaway:
-      "Click any node in the tree to slide open the deep-dive inspector drawer with exact mathematical sensitivity and user quotes.",
-    preferredPlacement: "bottom"
+      "Click any node in the tree to slide open the deep-dive inspector drawer with exact mathematical sensitivity and user quotes."
   },
   {
     id: "step-opportunities",
@@ -64,8 +61,7 @@ const SPOTLIGHT_STEPS: SpotlightStep[] = [
     description:
       "Instead of building 10 disjointed features or rewriting bank gateways, we deploy ONE core solution: Safe SIP Sizer. It directly solves Track A (cash-flow buffer) and passively eliminates Track B (bank bounce penalties), while intentionally scoping out uncontrollable external noise.",
     keyTakeaway:
-      "Direct Active Focus (Safe SIP Sizer) + Passive Operational Shield + Deliberately Out of Scope (SEBI T+1/T+2 & Bank Host Outages).",
-    preferredPlacement: "bottom"
+      "Direct Active Focus (Safe SIP Sizer) + Passive Operational Shield + Deliberately Out of Scope (SEBI T+1/T+2 & Bank Host Outages)."
   }
 ];
 
@@ -84,7 +80,7 @@ export function SpotlightTour({
 }: SpotlightTourProps) {
   const [currentStepIndex, setCurrentStepIndex] = useState(initialStepIndex);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
-  const [isElementVisible, setIsElementVisible] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
 
   const step = SPOTLIGHT_STEPS[currentStepIndex];
@@ -95,31 +91,36 @@ export function SpotlightTour({
     const el = document.getElementById(step.targetElementId);
     if (el) {
       const rect = el.getBoundingClientRect();
-      setTargetRect(rect);
-      setIsElementVisible(true);
-    } else {
-      setIsElementVisible(false);
-      setTargetRect(null);
+      // Ensure element actually has layout width and height
+      if (rect.width > 50 && rect.height > 50) {
+        setTargetRect(rect);
+        setIsReady(true);
+        return;
+      }
     }
+    setTargetRect(null);
+    setIsReady(false);
   }, [step]);
 
   // Synchronize tab switch and scroll to target element
   useEffect(() => {
     if (!isOpen || !step) return;
 
-    // Switch to step tab immediately
+    setIsReady(false);
     onNavigateTab(step.targetTab);
 
-    // Allow Next.js rendering cycle to mount target element
+    // Give Next.js DOM enough time to mount the view and calculate real bounds
     const timer = setTimeout(() => {
       const el = document.getElementById(step.targetElementId);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(updateSpotlightPosition, 250);
+        setTimeout(() => {
+          updateSpotlightPosition();
+        }, 300);
       } else {
         updateSpotlightPosition();
       }
-    }, 180);
+    }, 250);
 
     return () => clearTimeout(timer);
   }, [isOpen, currentStepIndex, step, onNavigateTab, updateSpotlightPosition]);
@@ -165,65 +166,24 @@ export function SpotlightTour({
     onClose();
   };
 
-  // Calculate popover positioning relative to target element
-  const getPopoverStyle = (): React.CSSProperties => {
-    if (!targetRect || !isElementVisible) {
-      // Fallback: Centered modal
-      return {
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        zIndex: 60
-      };
-    }
-
-    const padding = 16;
-    const popoverWidth = Math.min(540, window.innerWidth - 32);
-    let left = targetRect.left + (targetRect.width - popoverWidth) / 2;
-    // Keep popover inside screen bounds horizontally
-    left = Math.max(16, Math.min(left, window.innerWidth - popoverWidth - 16));
-
-    // Determine vertical placement: below if enough space, else above
-    const spaceBelow = window.innerHeight - targetRect.bottom;
-    const spaceAbove = targetRect.top;
-
-    let top: number;
-    if (spaceBelow > 380 || spaceBelow > spaceAbove) {
-      // Place below
-      top = targetRect.bottom + padding;
-    } else {
-      // Place above
-      top = Math.max(16, targetRect.top - 400 - padding);
-    }
-
-    return {
-      position: "fixed",
-      top: `${top}px`,
-      left: `${left}px`,
-      width: `${popoverWidth}px`,
-      zIndex: 60
-    };
-  };
-
   return (
     <div className="fixed inset-0 z-50 overflow-hidden pointer-events-auto">
       {/* 1. Backdrop Overlay */}
       <div 
         onClick={handleComplete}
-        className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity duration-300"
+        className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity duration-300"
       />
 
-      {/* 2. Spotlight Cutout & Glowing Halo around Target Element */}
-      {targetRect && isElementVisible && (
+      {/* 2. Spotlight Cutout & Glowing Halo around Target Element (strictly when element is ready) */}
+      {targetRect && isReady && (
         <div
           style={{
             position: "fixed",
-            top: targetRect.top - 8,
-            left: targetRect.left - 8,
-            width: targetRect.width + 16,
-            height: targetRect.height + 16,
-            boxShadow: "0 0 0 9999px rgba(0, 0, 0, 0.78), 0 0 28px rgba(0, 208, 156, 0.45)",
+            top: targetRect.top - 6,
+            left: targetRect.left - 6,
+            width: targetRect.width + 12,
+            height: targetRect.height + 12,
+            boxShadow: "0 0 0 9999px rgba(0, 0, 0, 0.78), 0 0 32px rgba(0, 208, 156, 0.5)",
             borderRadius: "16px",
             border: "2px solid #00D09C",
             pointerEvents: "none",
@@ -246,80 +206,81 @@ export function SpotlightTour({
         </div>
       )}
 
-      {/* 3. High-Contrast Spotlight Popover Card */}
-      <div
-        ref={popoverRef}
-        style={getPopoverStyle()}
-        className="bg-[#1C2028] border-2 border-[#00D09C]/80 rounded-2xl p-5 sm:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.85)] space-y-4 animate-in fade-in zoom-in-95 duration-200"
-      >
-        {/* Milestone Indicator & Step Progress */}
-        <div className="flex items-center justify-between gap-2 border-b border-[#282D3D] pb-3">
-          <div className="flex items-center gap-2">
-            <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${step.badgeColor} uppercase tracking-wide`}>
-              {step.milestoneBadge}
-            </span>
+      {/* 3. High-Contrast Spotlight Popover Card (Centered Modal for optimal readability) */}
+      <div className="fixed inset-0 z-60 flex items-center justify-center p-4 pointer-events-none">
+        <div
+          ref={popoverRef}
+          className="bg-[#1C2028] border-2 border-[#00D09C] rounded-2xl p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.95)] max-w-lg w-full space-y-4 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto"
+        >
+          {/* Milestone Indicator & Step Progress */}
+          <div className="flex items-center justify-between gap-2 border-b border-[#282D3D] pb-3">
+            <div className="flex items-center gap-2">
+              <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${step.badgeColor} uppercase tracking-wide`}>
+                {step.milestoneBadge}
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-xs font-mono">
+              <span className="text-[#00D09C] font-bold">
+                {step.milestoneNum} / {step.totalMilestones}
+              </span>
+              <span className="text-[#696C7C]">Milestones</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono">
-            <span className="text-[#00D09C] font-bold">
-              {step.milestoneNum} / {step.totalMilestones}
-            </span>
-            <span className="text-[#696C7C]">Milestones</span>
+
+          {/* Milestone Progress Bar */}
+          <div className="w-full bg-[#232734] h-1.5 rounded-full overflow-hidden border border-[#282D3D]">
+            <div
+              className="bg-[#00D09C] h-full transition-all duration-300"
+              style={{ width: `${(step.milestoneNum / step.totalMilestones) * 100}%` }}
+            />
           </div>
-        </div>
 
-        {/* Milestone Progress Bar */}
-        <div className="w-full bg-[#232734] h-1.5 rounded-full overflow-hidden border border-[#282D3D]">
-          <div
-            className="bg-[#00D09C] h-full transition-all duration-300"
-            style={{ width: `${(step.milestoneNum / step.totalMilestones) * 100}%` }}
-          />
-        </div>
-
-        {/* Title & Description */}
-        <div className="space-y-1.5">
-          <div className="text-[11px] text-[#9EA0A8] font-semibold">{step.subtitle}</div>
-          <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug tracking-tight">
-            {step.title}
-          </h3>
-          <p className="text-xs text-[#C5C7D0] leading-relaxed pt-1">
-            {step.description}
-          </p>
-        </div>
-
-        {/* Key Takeaway Callout Box */}
-        <div className="bg-[#232734] border border-[#282D3D] rounded-xl p-3 text-xs space-y-1">
-          <div className="flex items-center gap-1.5 text-[#00D09C] font-bold text-[11px] uppercase tracking-wide">
-            <span>💡</span> Key PM Takeaway:
+          {/* Title & Description */}
+          <div className="space-y-1.5">
+            <div className="text-[11px] text-[#9EA0A8] font-semibold">{step.subtitle}</div>
+            <h3 className="text-lg font-extrabold text-white leading-snug tracking-tight">
+              {step.title}
+            </h3>
+            <p className="text-xs text-[#C5C7D0] leading-relaxed pt-1">
+              {step.description}
+            </p>
           </div>
-          <p className="text-gray-300 text-[11px] leading-relaxed">
-            {step.keyTakeaway}
-          </p>
-        </div>
 
-        {/* Action Controls */}
-        <div className="flex items-center justify-between pt-2 border-t border-[#282D3D]">
-          <button
-            onClick={handleComplete}
-            className="text-xs text-[#9EA0A8] hover:text-white transition-colors cursor-pointer font-medium"
-          >
-            Skip Onboarding
-          </button>
+          {/* Key Takeaway Callout Box */}
+          <div className="bg-[#232734] border border-[#282D3D] rounded-xl p-3.5 text-xs space-y-1">
+            <div className="flex items-center gap-1.5 text-[#00D09C] font-bold text-[11px] uppercase tracking-wide">
+              <span>💡</span> Key PM Takeaway:
+            </div>
+            <p className="text-gray-300 text-[11px] leading-relaxed">
+              {step.keyTakeaway}
+            </p>
+          </div>
 
-          <div className="flex items-center gap-2">
-            {currentStepIndex > 0 && (
-              <button
-                onClick={handleBack}
-                className="px-3 py-1.5 text-xs font-semibold text-gray-200 bg-[#232734] hover:bg-[#2A2F3E] border border-[#282D3D] rounded-lg transition-colors cursor-pointer"
-              >
-                Back
-              </button>
-            )}
+          {/* Action Controls */}
+          <div className="flex items-center justify-between pt-3 border-t border-[#282D3D]">
             <button
-              onClick={handleNext}
-              className="px-4 py-1.5 text-xs font-bold text-black bg-[#00D09C] hover:bg-[#00B386] rounded-lg transition-colors shadow-sm cursor-pointer flex items-center gap-1.5"
+              onClick={handleComplete}
+              className="text-xs text-[#9EA0A8] hover:text-white transition-colors cursor-pointer font-medium"
             >
-              <span>{currentStepIndex === SPOTLIGHT_STEPS.length - 1 ? "Complete Tour 🚀" : "Next Milestone →"}</span>
+              Skip Onboarding
             </button>
+
+            <div className="flex items-center gap-2">
+              {currentStepIndex > 0 && (
+                <button
+                  onClick={handleBack}
+                  className="px-3.5 py-1.5 text-xs font-semibold text-gray-200 bg-[#232734] hover:bg-[#2A2F3E] border border-[#282D3D] rounded-lg transition-colors cursor-pointer"
+                >
+                  Back
+                </button>
+              )}
+              <button
+                onClick={handleNext}
+                className="px-4 py-1.5 text-xs font-bold text-black bg-[#00D09C] hover:bg-[#00B386] rounded-lg transition-colors shadow-sm cursor-pointer flex items-center gap-1.5"
+              >
+                <span>{currentStepIndex === SPOTLIGHT_STEPS.length - 1 ? "Complete Tour 🚀" : "Next Milestone →"}</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
