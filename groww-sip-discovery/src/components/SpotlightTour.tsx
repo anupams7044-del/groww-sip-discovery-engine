@@ -15,6 +15,7 @@ export interface SpotlightStep {
   description: string;
   keyTakeaway: string;
   badgeColor: string;
+  popoverPosition: "bottom" | "top";
 }
 
 const SPOTLIGHT_STEPS: SpotlightStep[] = [
@@ -31,7 +32,8 @@ const SPOTLIGHT_STEPS: SpotlightStep[] = [
     description:
       "Decomposing 1,025 public investor complaints reveals two interconnected dimensions: an upstream behavioral vulnerability (uncalibrated commitments & zero emergency buffer) that triggers downstream operational payment disasters.",
     keyTakeaway:
-      "Behavioral Root Cause (Left, ~72% of retention gain) vs. Operational Shield (Right, ~28% of retention gain)."
+      "Behavioral Root Cause (Left, ~72% of retention gain) vs. Operational Shield (Right, ~28% of retention gain).",
+    popoverPosition: "bottom"
   },
   {
     id: "step-metric-tree",
@@ -46,7 +48,8 @@ const SPOTLIGHT_STEPS: SpotlightStep[] = [
     description:
       "Mathematically decomposes the North Star metric (28.0% baseline → 45.4% target) into 4 sequential journey stages. Each stage expands into 3 measurable driver leaf nodes with KPI formulas and authentic scraped quotes.",
     keyTakeaway:
-      "Click any node in the tree to slide open the deep-dive inspector drawer with exact mathematical sensitivity and user quotes."
+      "Click any node in the tree to slide open the deep-dive inspector drawer with exact mathematical sensitivity and user quotes.",
+    popoverPosition: "bottom"
   },
   {
     id: "step-opportunities",
@@ -61,7 +64,8 @@ const SPOTLIGHT_STEPS: SpotlightStep[] = [
     description:
       "Instead of building 10 disjointed features or rewriting bank gateways, we deploy ONE core solution: Safe SIP Sizer. It directly solves Track A (cash-flow buffer) and passively eliminates Track B (bank bounce penalties), while intentionally scoping out uncontrollable external noise.",
     keyTakeaway:
-      "Direct Active Focus (Safe SIP Sizer) + Passive Operational Shield + Deliberately Out of Scope (SEBI T+1/T+2 & Bank Host Outages)."
+      "Direct Active Focus (Safe SIP Sizer) + Passive Operational Shield + Deliberately Out of Scope (SEBI T+1/T+2 & Bank Host Outages).",
+    popoverPosition: "top"
   }
 ];
 
@@ -91,7 +95,6 @@ export function SpotlightTour({
     const el = document.getElementById(step.targetElementId);
     if (el) {
       const rect = el.getBoundingClientRect();
-      // Ensure element actually has layout width and height
       if (rect.width > 50 && rect.height > 50) {
         setTargetRect(rect);
         setIsReady(true);
@@ -109,11 +112,12 @@ export function SpotlightTour({
     setIsReady(false);
     onNavigateTab(step.targetTab);
 
-    // Give Next.js DOM enough time to mount the view and calculate real bounds
     const timer = setTimeout(() => {
       const el = document.getElementById(step.targetElementId);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        // Scroll element to appropriate position leaving room for docked popover
+        const blockPosition = step.popoverPosition === "top" ? "end" : "start";
+        el.scrollIntoView({ behavior: "smooth", block: blockPosition });
         setTimeout(() => {
           updateSpotlightPosition();
         }, 300);
@@ -174,7 +178,7 @@ export function SpotlightTour({
         className="fixed inset-0 bg-black/80 backdrop-blur-xs transition-opacity duration-300"
       />
 
-      {/* 2. Spotlight Cutout & Glowing Halo around Target Element (strictly when element is ready) */}
+      {/* 2. Spotlight Cutout & Glowing Halo around Target Element */}
       {targetRect && isReady && (
         <div
           style={{
@@ -206,14 +210,18 @@ export function SpotlightTour({
         </div>
       )}
 
-      {/* 3. High-Contrast Spotlight Popover Card (Centered Modal for optimal readability) */}
-      <div className="fixed inset-0 z-60 flex items-center justify-center p-4 pointer-events-none">
+      {/* 3. Non-Obstructive Docked Popover Card (Docked at Bottom or Top so Target is completely visible) */}
+      <div 
+        className={`fixed left-0 right-0 z-60 flex justify-center px-4 pointer-events-none transition-all duration-300 ${
+          step.popoverPosition === "top" ? "top-6" : "bottom-6"
+        }`}
+      >
         <div
           ref={popoverRef}
-          className="bg-[#1C2028] border-2 border-[#00D09C] rounded-2xl p-6 sm:p-7 shadow-[0_25px_60px_rgba(0,0,0,0.95)] max-w-lg w-full space-y-4 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto"
+          className="bg-[#1C2028]/95 backdrop-blur-md border-2 border-[#00D09C] rounded-2xl p-5 sm:p-6 shadow-[0_20px_60px_rgba(0,0,0,0.95)] max-w-xl w-full space-y-3.5 animate-in fade-in zoom-in-95 duration-200 pointer-events-auto"
         >
           {/* Milestone Indicator & Step Progress */}
-          <div className="flex items-center justify-between gap-2 border-b border-[#282D3D] pb-3">
+          <div className="flex items-center justify-between gap-2 border-b border-[#282D3D] pb-2.5">
             <div className="flex items-center gap-2">
               <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${step.badgeColor} uppercase tracking-wide`}>
                 {step.milestoneBadge}
@@ -236,18 +244,18 @@ export function SpotlightTour({
           </div>
 
           {/* Title & Description */}
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <div className="text-[11px] text-[#9EA0A8] font-semibold">{step.subtitle}</div>
-            <h3 className="text-lg font-extrabold text-white leading-snug tracking-tight">
+            <h3 className="text-base sm:text-lg font-extrabold text-white leading-snug tracking-tight">
               {step.title}
             </h3>
-            <p className="text-xs text-[#C5C7D0] leading-relaxed pt-1">
+            <p className="text-xs text-[#C5C7D0] leading-relaxed pt-0.5">
               {step.description}
             </p>
           </div>
 
           {/* Key Takeaway Callout Box */}
-          <div className="bg-[#232734] border border-[#282D3D] rounded-xl p-3.5 text-xs space-y-1">
+          <div className="bg-[#232734] border border-[#282D3D] rounded-xl p-3 text-xs space-y-1">
             <div className="flex items-center gap-1.5 text-[#00D09C] font-bold text-[11px] uppercase tracking-wide">
               <span>💡</span> Key PM Takeaway:
             </div>
@@ -257,7 +265,7 @@ export function SpotlightTour({
           </div>
 
           {/* Action Controls */}
-          <div className="flex items-center justify-between pt-3 border-t border-[#282D3D]">
+          <div className="flex items-center justify-between pt-2 border-t border-[#282D3D]">
             <button
               onClick={handleComplete}
               className="text-xs text-[#9EA0A8] hover:text-white transition-colors cursor-pointer font-medium"
@@ -269,7 +277,7 @@ export function SpotlightTour({
               {currentStepIndex > 0 && (
                 <button
                   onClick={handleBack}
-                  className="px-3.5 py-1.5 text-xs font-semibold text-gray-200 bg-[#232734] hover:bg-[#2A2F3E] border border-[#282D3D] rounded-lg transition-colors cursor-pointer"
+                  className="px-3 py-1.5 text-xs font-semibold text-gray-200 bg-[#232734] hover:bg-[#2A2F3E] border border-[#282D3D] rounded-lg transition-colors cursor-pointer"
                 >
                   Back
                 </button>
